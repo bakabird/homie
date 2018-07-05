@@ -2,7 +2,7 @@
   "name": "homie",
   "description": "application created by thinkjs",
   "version": "1.0.0",
-  "author": "rddcoding<rddcoding@sina.cn>",
+  "author": "bakabird <bakabird@sina.cn>",
   "scripts": {
     "start": "node development.js",
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
@@ -12,14 +12,15 @@
   },
   "dependencies": {
     "think-cache": "^1.0.0",
-    "think-session": "^1.0.0",
     "think-cache-file": "^1.0.8",
+    "think-logger3": "^1.0.0",
     "think-model": "^1.0.0",
+    "think-model-mysql": "^1.0.0",
+    "think-model-sqlite": "^1.1.1",
+    "think-session": "^1.0.0",
     "think-session-file": "^1.0.5",
     "think-view": "^1.0.0",
     "think-view-nunjucks": "^1.0.1",
-    "think-model-mysql": "^1.0.0",
-    "think-logger3": "^1.0.0",
     "thinkjs": "^3.0.0"
   },
   "devDependencies": {
@@ -44,11 +45,11 @@
     "metadata": {
       "name": "homie",
       "description": "application created by thinkjs",
-      "author": "rddcoding<rddcoding@sina.cn>",
+      "author": "bakabird <bakabird@sina.cn>",
       "babel": true
     },
     "projectName": "homie",
-    "template": "C:\\Program Files (x86)\\nodejs\\node_modules\\think-cli\\default_template",
+    "template": "/usr/local/lib/node_modules/think-cli/default_template",
     "clone": false,
     "isMultiModule": false
   }
