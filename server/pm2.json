@@ -2,7 +2,7 @@
   "apps": [{
     "name": "homie",
     "script": "production.js",
-    "cwd": "C:\Users\yangdawei2gwy\homie",
+    "cwd": "/Users/yangdawei2gwy/homie/homie",
     "exec_mode": "fork",
     "max_memory_restart": "1G",
     "autorestart": true,

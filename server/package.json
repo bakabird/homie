@@ -2,7 +2,7 @@
   "name": "homie",
   "description": "application created by thinkjs",
   "version": "1.0.0",
-  "author": "rddcoding<rddcoding@sina.cn>",
+  "author": "bakabird <bakabird@sina.cn>",
   "scripts": {
     "start": "node development.js",
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
@@ -44,11 +44,11 @@
     "metadata": {
       "name": "homie",
       "description": "application created by thinkjs",
-      "author": "rddcoding<rddcoding@sina.cn>",
+      "author": "bakabird <bakabird@sina.cn>",
       "babel": true
     },
     "projectName": "homie",
-    "template": "C:\\Program Files (x86)\\nodejs\\node_modules\\think-cli\\default_template",
+    "template": "/usr/local/lib/node_modules/think-cli/default_template",
     "clone": false,
     "isMultiModule": false
   }
