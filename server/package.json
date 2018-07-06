@@ -5,6 +5,7 @@
   "author": "bakabird <bakabird@sina.cn>",
   "scripts": {
     "start": "node development.js",
+    "up": "npm i --registry=https://registry.npm.taobao.org/",
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
     "compile": "babel --no-babelrc src/ --presets think-node --out-dir app/",
     "lint": "eslint src/",
