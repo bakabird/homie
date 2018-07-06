@@ -1,8 +1,13 @@
 module.exports = class extends think.Model {
-  newRoom(){
-     return this.add({
-      x: 22,
-      y: 33
+  newRoom(x,y){
+    return this.add({
+      x, y
     });
+  }
+  checkRoom(roomId){
+    return this.select({id: roomId});
+  }
+  delRoom(roomId){
+    return this.where({id: roomId}).delete()
   }
 };
