@@ -1,5 +1,8 @@
 module.exports = class extends think.Logic {
   heyAction(){
-    this.success();
+    this.allowMethods = "get"
+  }
+  echoAction(){
+
   }
 };
