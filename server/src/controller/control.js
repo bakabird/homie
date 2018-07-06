@@ -7,6 +7,6 @@ module.exports = class extends Base {
   }
   echoAction(){
     if(isDev) console.log(this.post());
-    this.success(this.post());
+    this.success(this.ctx.request);
   }
 };
