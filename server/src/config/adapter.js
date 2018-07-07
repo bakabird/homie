@@ -2,6 +2,7 @@ const fileCache = require('think-cache-file');
 const nunjucks = require('think-view-nunjucks');
 const fileSession = require('think-session-file');
 const mysql = require('think-model-mysql');
+const socketio = require('think-websocket-socket.io');
 const sqlite = require('think-model-sqlite');
 const {Console, File, DateFile} = require('think-logger3');
 const path = require('path');
@@ -55,7 +56,7 @@ exports.model = {
     handle: sqlite, // Adapter handle
     path: path.join(think.ROOT_PATH, 'runtime/sqlite'), // sqlite 保存的目录
     database: 'homie', // 数据库名
-    connectionLimit: 1, // 连接池的连接个数，默认为 1
+    connectionLimit: 5, // 连接池的连接个数，默认为 1
     prefix: '', // 数据表前缀，如果一个数据库里有多个项目，那项目之间的数据表可以通过前缀来区分
   }
 }
@@ -119,3 +120,26 @@ exports.logger = {
     filename: path.join(think.ROOT_PATH, 'logs/app.log')
   }
 };
+
+
+exports.websocket = {
+  type: 'socketio',
+  common: {
+    // common config
+    // origins: '*:*'
+  },
+  socketio: {
+    handle: socketio,
+    // allowOrigin: '127.0.0.1:45123',  // 默认所有的域名都允许访问
+    allowOrigin: isDev ? null : '127.0.0.1:8360',  // 默认所有的域名都允许访问
+    path: '/socket.io',             // 默认 '/socket.io'
+    adapter: null,                  // 默认无 adapter
+    messages: [{
+      open: '/websocket/open',       // 建立连接时处理对应到 websocket Controller 下的 open Action
+      close: '/websocket/close',     // 关闭连接时处理的 Action
+      // login: '/websocket/login',     // 登陆 事件处理的 Action
+      // logout: '/websocket/logout',   // 登出 事件处理的 Action
+      // check: '/websocket/check'      // 检查登陆情况 事件处理的 Action
+    }]
+  }
+}

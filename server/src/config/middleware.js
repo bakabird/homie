@@ -1,4 +1,5 @@
 const path = require('path');
+const cors = require('koa2-cors')
 const isDev = think.env === 'development';
 
 module.exports = [
@@ -23,6 +24,14 @@ module.exports = [
     options: {
       debug: isDev
     }
+  },
+  {
+    handle: cors,
+    enable: isDev,
+    options: {
+      origin: "http://localhost:8080",
+      credentials: true
+    } 
   },
   {
     handle: 'payload',

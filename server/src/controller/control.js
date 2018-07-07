@@ -3,7 +3,7 @@ const isDev = think.env === 'development';
 
 module.exports = class extends Base {
   async heyAction(){
-    this.success();
+    return this.success();
   }
   echoAction(){
     if(isDev) console.log(this.post());
@@ -12,9 +12,9 @@ module.exports = class extends Base {
     re.req = this.ctx.request;
     re.post = this.post();
 
-    this.success(re);
+    return this.success(re);
   }
   async allRoomAction(){
-    this.success(await this.model('room').all())
+    return this.success(await this.model('room').all())
   }
 };
