@@ -12,6 +12,7 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "think-cache": "^1.0.0",
     "think-cache-file": "^1.0.8",
     "think-logger3": "^1.0.0",
@@ -53,10 +54,5 @@
     "template": "/usr/local/lib/node_modules/think-cli/default_template",
     "clone": false,
     "isMultiModule": false
-  },
-  "bin": "./production.js",
-  "pkg": {
-    "scripts": "app/**/*.js",
-    "assets": ["node_modules/sqlite3/lib/**/*","views/**/*","www/**/*","node_modules/thinkjs/lib/config/**/*"]
   }
 }
