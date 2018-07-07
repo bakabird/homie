@@ -2,7 +2,7 @@ const Base = require('./base.js');
 const isDev = think.env === 'development';
 
 module.exports = class extends Base {
-   async heyAction(){
+  async heyAction(){
     this.success();
   }
   echoAction(){
@@ -13,5 +13,8 @@ module.exports = class extends Base {
     re.post = this.post();
 
     this.success(re);
+  }
+  async allRoomAction(){
+    this.success(await this.model('room').all())
   }
 };

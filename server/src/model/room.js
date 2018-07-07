@@ -16,4 +16,7 @@ module.exports = class extends think.Model {
   RoomNum(){
     return this.count();
   }
+  all(){
+    return this.select();
+  }
 };
