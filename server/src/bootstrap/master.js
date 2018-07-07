@@ -3,15 +3,30 @@ const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-// 确认需要的数据库存在
-const sqlPath = path.join(think.ROOT_PATH, 'runtime/sqlite/');
-if(!fs.existsSync(sqlPath)){
-  fs.mkdirSync(sqlPath);
+// 保证数据库干净
+const rtPath = path.join(think.ROOT_PATH, 'runtime/')
+const sqlPath = path.join(think.ROOT_PATH, 'runtime/sqlite/')
+const dbPath = path.join(think.ROOT_PATH, 'runtime/sqlite/homie.sqlite')
+
+const createDirIfNotExist = (path) => {
+  if (!fs.existsSync(path)) {
+    fs.mkdirSync(path);
+  }
 }
-const homieDb = new sqlite3.Database(path.join(think.ROOT_PATH, 'runtime/sqlite/homie.sqlite'));
+const rmFileIfExist = (path) => {
+  if(fs.existsSync(path)){
+    fs.unlinkSync(path)
+  }
+}
+
+createDirIfNotExist(rtPath)
+createDirIfNotExist(sqlPath)
+rmFileIfExist(dbPath)
+
+const homieDb = new sqlite3.Database(dbPath);
 
 // 确认需要的数据表存在
-homieDb.serialize(function() {
+homieDb.serialize(function () {
   // 房间数据表
   homieDb.run(`create table if not exists room (
     id integer primary key not null,
