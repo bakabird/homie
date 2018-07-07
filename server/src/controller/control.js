@@ -2,7 +2,7 @@ const Base = require('./base.js');
 const isDev = think.env === 'development';
 
 module.exports = class extends Base {
-  heyAction(){
+   async heyAction(){
     this.success();
   }
   echoAction(){

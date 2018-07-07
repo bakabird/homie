@@ -12,6 +12,15 @@ module.exports = class extends think.Logic {
       }
     }
   }
+  infoAction(){
+    this.allowMethods = 'post'
+    this.rules = {
+      roomId: {
+        required: true,
+        int: true
+      }
+    }
+  }
   delAction(){
     this.allowMethods = 'post'
     this.rules = {
