@@ -1,4 +1,5 @@
 const Base = require('./base.js');
+const _ = require('lodash')
 
 module.exports = class extends Base {
   async newAction(){
@@ -26,5 +27,16 @@ module.exports = class extends Base {
     console.log(rlt)
     if(rlt == false) this.fail(1002,"invalid roomId")
     else this.success()
+  }
+  async updateAction(){
+    const model = this.model('room')
+    const {
+      roomId
+    } = this.post()
+    const news = _.pick(this.post(),['x','y','name'])
+    const exist = await model.checkRoom(roomId)
+    if(think.isEmpty(exist)) this.fail(1002,"invalid roomId")
+    if(!think.isEmpty(news)) await model.where({ id: roomId }).update(news)
+    this.success(await model.checkRoom(roomId))
   }
 };
