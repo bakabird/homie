@@ -1,10 +1,10 @@
 module.exports = class extends think.Model {
-  newRoom(x,y,name){
+  newRoom(x,y,name,entry = false){
     return this.add({
       x,
       y,
       name,
-      entry: false
+      entry
     });
   }
   checkRoom(roomId){

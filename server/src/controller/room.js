@@ -12,6 +12,16 @@ module.exports = class extends Base {
     })
     return true
   }
+  async newEntryAction(){
+    const x = this.post('x')
+    const y = this.post('y')
+    const defaultName = `房间${(await this.model('room').RoomNum()) + 1}`
+    const rlt = await this.model('room').newRoom(x, y, defaultName,true)
+    this.success({
+      roomId: rlt
+    })
+    return true
+  }
   async infoAction() {
     const roomId = this.post('roomId')
     const roomInfo = await this.model('room').checkRoom(roomId)
@@ -19,26 +29,20 @@ module.exports = class extends Base {
     console.log(rlt)
     if (rlt == false) {
       this.fail(1002, "invalid roomId")
-      return false
     } else {
       this.success(rlt)
-      return true
     }
+    return false
   }
   async delAction() {
     const roomId = this.post('roomId')
-    console.log(1)
     const exist = await this.model('room').checkRoom(roomId)
-    console.log(1)
     const rlt = think.isEmpty(exist) ? false : await this.model('room').delRoom(roomId);
-    console.log(1)
     console.log(rlt)
     if (rlt == false) {
-      console.log(1)
       this.fail(1002, "invalid roomId")
       return false
     } else {
-      console.log(1)
       this.success()
       return true
     }
@@ -63,6 +67,7 @@ module.exports = class extends Base {
       return false
     }
   }
+
   __after() {
     this.WSBC('roomChange')
   }
