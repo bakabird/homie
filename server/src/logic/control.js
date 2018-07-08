@@ -5,4 +5,7 @@ module.exports = class extends think.Logic {
   echoAction(){
 
   }
+  allRoomAction(){
+    this.allowMethods = "get"
+  }
 };

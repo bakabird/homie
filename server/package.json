@@ -12,6 +12,8 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "koa2-cors": "^2.0.5",
+    "lodash": "^4.17.10",
     "think-cache": "^1.0.0",
     "think-cache-file": "^1.0.8",
     "think-logger3": "^1.0.0",
@@ -22,6 +24,8 @@
     "think-session-file": "^1.0.5",
     "think-view": "^1.0.0",
     "think-view-nunjucks": "^1.0.1",
+    "think-websocket": "^1.0.6",
+    "think-websocket-socket.io": "^1.0.10",
     "thinkjs": "^3.0.0"
   },
   "devDependencies": {
@@ -53,10 +57,5 @@
     "template": "/usr/local/lib/node_modules/think-cli/default_template",
     "clone": false,
     "isMultiModule": false
-  },
-  "bin": "./production.js",
-  "pkg": {
-    "scripts": "app/**/*.js",
-    "assets": ["node_modules/sqlite3/lib/**/*","views/**/*","www/**/*","node_modules/thinkjs/lib/config/**/*"]
   }
 }
