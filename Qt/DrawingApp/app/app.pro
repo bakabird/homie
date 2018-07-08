@@ -50,7 +50,8 @@ SOURCES += main.cpp \
     fileio/JsonFileReader.cpp \
     fileio/JsonFileWriter.cpp \
     fileio/FileReaderFactory.cpp \
-    fileio/FileWriterFactory.cpp
+    fileio/FileWriterFactory.cpp \
+    PropertyNameLineEdit.cpp
 
 HEADERS  += \
     MainWindow.hpp \
@@ -99,7 +100,8 @@ HEADERS  += \
     fileio/FileWriterFactory.hpp \
     commands/ChangePropertyCommand.hpp \
     commands/ChangePropertyCommandList.hpp \
-    Signal.hpp
+    Signal.hpp \
+    PropertyNameLineEdit.hpp
 
 FORMS    += mainwindow.ui \
     drawdialog.ui

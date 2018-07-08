@@ -7,6 +7,7 @@
 class VisualEntity;
 class PropertyColorButton;
 class PropertySpinBox;
+class PropertyNameLineEdit;
 class Selection;
 
 // singleton
@@ -18,12 +19,13 @@ public:
     static GlobalDrawProperties& getInstance();
     void setup(PropertyColorButton *fillColorProp,
                PropertyColorButton *lineColorProp,
-               PropertySpinBox *thicknessProp);
+               PropertySpinBox *thicknessProp, PropertyNameLineEdit *nameLineProp);
     void setVEProperties(VisualEntity *ve);
     QColor getFillColor();
     QColor getLineColor();
     bool isSetup() { return m_isSetup; }
     int getThickness();
+    QString getNameLine();
     void update(size_t selSize);
     void unlinkProperties();
 
@@ -40,6 +42,7 @@ private:
     PropertyColorButton *m_fillColorProp;
     PropertyColorButton *m_lineColorProp;
     PropertySpinBox *m_thicknessProp;
+    PropertyNameLineEdit *m_nameLineProp;
 
     bool m_isSetup;
     ActiveSelection *m_as;

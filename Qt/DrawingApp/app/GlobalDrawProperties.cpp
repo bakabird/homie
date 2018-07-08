@@ -1,5 +1,6 @@
 #include "GlobalDrawProperties.hpp"
 #include "PropertyColorButton.hpp"
+#include "PropertyNameLineEdit.hpp"
 #include "PropertySpinBox.hpp"
 #include "Line.hpp"
 #include "Shape.hpp"
@@ -16,13 +17,16 @@ GlobalDrawProperties &GlobalDrawProperties::getInstance()
 
 void GlobalDrawProperties::setup(PropertyColorButton *fillColorProp,
                                   PropertyColorButton *lineColorProp,
-                                  PropertySpinBox *thicknessProp)
+                                  PropertySpinBox *thicknessProp,
+                                  PropertyNameLineEdit *nameLineProp
+                                 )
 {
     m_isSetup = true;
 
     m_fillColorProp = fillColorProp;
     m_lineColorProp = lineColorProp;
     m_thicknessProp = thicknessProp;
+    m_nameLineProp = nameLineProp;
 
     connect(m_fillColorProp, &PropertyColorButton::pressed,
             this, &GlobalDrawProperties::onClickFillColor);
@@ -37,6 +41,8 @@ void GlobalDrawProperties::setup(PropertyColorButton *fillColorProp,
             this, &GlobalDrawProperties::onSelectLineColor);
     connect(m_lineColorProp->getColorDialog(), &QColorDialog::rejected,
             this, &GlobalDrawProperties::onRejectLineColor);
+
+    //connect(m_nameLineProp,&PropertyNameLineEdit::editingFinished, Shape, &Shape::setName);
 }
 
 void GlobalDrawProperties::setVEProperties(VisualEntity *ve)
@@ -70,6 +76,10 @@ int GlobalDrawProperties::getThickness()
     return m_thicknessProp->value();
 }
 
+QString GlobalDrawProperties::getNameLine(){
+    return m_nameLineProp->text();
+}
+
 // get from one source; apply to many
 void GlobalDrawProperties::update(size_t selSize)
 {
@@ -94,6 +104,10 @@ void GlobalDrawProperties::update(size_t selSize)
         } else {
             delete comm;
         }
+    };
+
+    const static auto setNameLineFunc =[=](QString name){
+
     };
 
     if (selSize == 0) {
@@ -137,6 +151,10 @@ void GlobalDrawProperties::update(size_t selSize)
         m_fillColorProp->setGetterSetter(
                     [=]() { return shape->getFillColor(); },
                     setFillColorFunc);
+       /* m_nameLineProp->setGetterSetter(
+                    [=]() { return shape->getName(); },
+                    setName);
+                    */
     }
 }
 
@@ -145,6 +163,7 @@ void GlobalDrawProperties::unlinkProperties()
     m_lineColorProp->unlink();
     m_thicknessProp->unlink();
     m_fillColorProp->unlink();
+    m_nameLineProp->unlink();
 }
 
 void GlobalDrawProperties::onClickFillColor()

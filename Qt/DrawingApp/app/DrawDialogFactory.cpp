@@ -23,6 +23,7 @@ DrawDialog *DrawDialogFactory::CreateShapeDrawDialog(MainWindow *parent, Shape *
 
     GlobalDrawProperties::getInstance().setVEProperties(shape);
 
+
     d->appendSpinBox("Position X",
                   [=]() { return shape->getPosition().x(); },
                   [=](int x) { shape->setPosition(QPoint(x, shape->getPosition().y())); });

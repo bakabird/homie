@@ -11,6 +11,7 @@
 #include "DrawRectangleTool.hpp"
 #include "DrawLineTool.hpp"
 #include "PropertyColorButton.hpp"
+#include "PropertyNameLineEdit.hpp"
 #include "PropertySpinBox.hpp"
 #include "GlobalDrawProperties.hpp"
 #include "MainCommandStack.hpp"
@@ -32,7 +33,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    m_appName("Drawing App"),
+    m_appName("智能家居模拟"),
     m_canvasFile("Untitled"),
     m_appStackIdx(-1),
     m_isFileSet(false),
@@ -66,11 +67,15 @@ MainWindow::MainWindow(QWidget *parent) :
     PropertySpinBox *thicknessSpinBox =
             new PropertySpinBox(this, getCanvas(), 2);
 
-    m_gp->setup(fillColorBtn, lineColorBtn, thicknessSpinBox);
+    PropertyNameLineEdit *nameLineEdit =
+            new PropertyNameLineEdit(this, getCanvas(), "hello");
+
+    m_gp->setup(fillColorBtn, lineColorBtn, thicknessSpinBox, nameLineEdit);
 
     ui->VEProp->addRow("Fill Color", fillColorBtn);
     ui->VEProp->addRow("Line Color", lineColorBtn);
     ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
+    ui->VEProp->addRow("Name",nameLineEdit);
 
     setCentralWidget(m_canvas);
     this->setWindowTitle(getTitle());

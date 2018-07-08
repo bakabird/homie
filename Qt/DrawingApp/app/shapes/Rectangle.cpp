@@ -4,8 +4,8 @@
 Rectangle::Rectangle()
 {
     setPosition(QPoint(10, 10));
-    m_width = 100;
-    m_height = 50;
+    m_width = 150;
+    m_height = 100;
 }
 
 Rectangle::~Rectangle()

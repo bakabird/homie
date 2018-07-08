@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DrawDialog.hpp"
-
+#include <QString>
 class MainWindow;
 class Shape;
 class Circle;

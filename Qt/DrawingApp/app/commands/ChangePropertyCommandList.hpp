@@ -24,3 +24,5 @@ ILine,
 int,
 &ILine::setLineThickness,
 &ILine::getLineThickness> ChangeLineThicknessCommand;
+
+

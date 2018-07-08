@@ -68,4 +68,10 @@ void VisualEntity::setIndex(int value)
     m_index = value;
 }
 
+QString VisualEntity::getName() const{ //获取实体名字
+    return m_name;
+}
+void VisualEntity::setName(QString name){//设置实体名字
 
+    m_name = name;
+}

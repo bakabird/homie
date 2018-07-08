@@ -6,7 +6,8 @@
 #include "MoveSelectionCommand.hpp"
 
 #include <QMouseEvent>
-
+#include <QDebug>
+#include <QColor>
 SelectionTool::SelectionTool(Canvas *canvas) :
     Tool(canvas),
     m_movComm(nullptr), m_clicked(nullptr),
@@ -34,6 +35,7 @@ void SelectionTool::mousePress(QMouseEvent *event)
             && !(event->modifiers() & Qt::ShiftModifier)) {
                 m_selection->deselectAll();
                 clicked->setSelected(true);
+                qDebug()<<clicked->getName();
     }
 
     if (m_selection->getSize() > 0

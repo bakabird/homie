@@ -22,6 +22,7 @@ public:
     void appendColorPicker(QString label,
                            std::function<QColor()> getter,
                            std::function<void(QColor)> setter);
+    void appendNameLineEdit();
     virtual ~DrawDialog();
 
 private:
