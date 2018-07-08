@@ -260,9 +260,24 @@ void MainWindow::on_actionDrawCircle_triggered()
 
 void MainWindow::on_actionDrawRectangle_triggered()
 {
+    /*
     uncheckAllToolbar();
     ui->actionDrawRectangle->setChecked(true);
     setActiveTool(m_drawRectangleTool.get());
+    */
+
+    Rectangle *r = new Rectangle();
+    m_canvas->addVisualEntity(r);
+
+    //DrawDialog *d = DrawDialogFactory::CreateDrawDialog(this, r);
+    //d->exec();
+    //delete d;
+
+    ActiveSelection::getInstance().deselectAll();
+    r->setSelected(true);
+
+    DrawCommand *comm = new DrawCommand(r);
+    comm->addtoCommandStack();
 }
 
 void MainWindow::on_actionDrawLine_triggered()

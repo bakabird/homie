@@ -65,6 +65,12 @@ void SelectionTool::mouseRelease(QMouseEvent *event)
                 m_selection->deselectAll();
                 clicked->setSelected(true);
             }
+
+            /*add socket to translate position
+            * x=clicked->getPosition().x();
+            * y=clicked->getPosition().y();
+            */
+
         }
     } else {
         m_selection->deselectAll();

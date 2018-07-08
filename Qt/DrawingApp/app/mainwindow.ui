@@ -90,12 +90,10 @@
     <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionSelectionTool"/>
-   <addaction name="actionDrawCircle"/>
    <addaction name="actionDrawRectangle"/>
-   <addaction name="actionDrawLine"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="focusPolicy">
@@ -120,7 +118,7 @@
   </widget>
   <action name="actionCircle">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/CircleIcon.png</normaloff>:/Icons/resource/CircleIcon.png</iconset>
    </property>
    <property name="text">
@@ -132,16 +130,19 @@
   </action>
   <action name="actionRectangle">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/RectangleIcon.png</normaloff>:/Icons/resource/RectangleIcon.png</iconset>
    </property>
    <property name="text">
     <string>Rectangle</string>
    </property>
+   <property name="statusTip">
+    <string/>
+   </property>
   </action>
   <action name="actionLine">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/LineIcon.png</normaloff>:/Icons/resource/LineIcon.png</iconset>
    </property>
    <property name="text">
@@ -153,7 +154,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/CircleIcon.png</normaloff>:/Icons/resource/CircleIcon.png</iconset>
    </property>
    <property name="text">
@@ -174,7 +175,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/CursorIcon.png</normaloff>:/Icons/resource/CursorIcon.png</iconset>
    </property>
    <property name="text">
@@ -192,7 +193,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/RectangleIcon.png</normaloff>:/Icons/resource/RectangleIcon.png</iconset>
    </property>
    <property name="text">
@@ -207,7 +208,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/LineIcon.png</normaloff>:/Icons/resource/LineIcon.png</iconset>
    </property>
    <property name="text">
@@ -222,7 +223,7 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/undo.png</normaloff>:/Icons/resource/undo.png</iconset>
    </property>
    <property name="text">
@@ -234,7 +235,7 @@
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/redo.png</normaloff>:/Icons/resource/redo.png</iconset>
    </property>
    <property name="text">
@@ -246,7 +247,7 @@
   </action>
   <action name="actionDelete">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/trash_can.png</normaloff>:/Icons/resource/trash_can.png</iconset>
    </property>
    <property name="text">
@@ -258,7 +259,7 @@
   </action>
   <action name="actionBring_To_Front">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/bringToFront.png</normaloff>:/Icons/resource/bringToFront.png</iconset>
    </property>
    <property name="text">
@@ -267,7 +268,7 @@
   </action>
   <action name="actionSend_to_Back">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/sendToBack.png</normaloff>:/Icons/resource/sendToBack.png</iconset>
    </property>
    <property name="text">
@@ -276,7 +277,7 @@
   </action>
   <action name="actionBring_Forward">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/bringForward.png</normaloff>:/Icons/resource/bringForward.png</iconset>
    </property>
    <property name="text">
@@ -288,7 +289,7 @@
   </action>
   <action name="actionSend_Backward">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/sendBackward.png</normaloff>:/Icons/resource/sendBackward.png</iconset>
    </property>
    <property name="text">
@@ -300,7 +301,7 @@
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/open.png</normaloff>:/Icons/resource/open.png</iconset>
    </property>
    <property name="text">
@@ -312,7 +313,7 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/save.png</normaloff>:/Icons/resource/save.png</iconset>
    </property>
    <property name="text">
@@ -337,7 +338,7 @@
   </action>
   <action name="actionNew">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../../../../BaiduNetdiskDownload/Github/DrawingApp/app/resource.qrc">
      <normaloff>:/Icons/resource/new.png</normaloff>:/Icons/resource/new.png</iconset>
    </property>
    <property name="text">
