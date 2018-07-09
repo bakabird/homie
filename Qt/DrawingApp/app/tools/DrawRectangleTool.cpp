@@ -5,6 +5,7 @@
 #include "Rectangle.hpp"
 #include "Canvas.hpp"
 
+#include <cstdlib>
 #include <QMouseEvent>
 
 DrawRectangleTool::DrawRectangleTool(Canvas *canvas) :

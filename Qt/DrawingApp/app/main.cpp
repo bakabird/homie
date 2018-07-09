@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
         nodeserver.start("node development.js");
 
         MainWindow w;
-        w.show(" ");
+        w.show();
 
 
         status = a.exec();
