@@ -12,13 +12,9 @@ int main(int argc, char *argv[])
 
     try {
         QApplication a(argc, argv);
-        QProcess nodeserver;
-
-        nodeserver.start("node development.js");
 
         MainWindow w;
         w.show();
-
 
         status = a.exec();
     } catch (std::exception &e) {
