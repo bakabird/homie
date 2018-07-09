@@ -75,3 +75,26 @@ void VisualEntity::setName(QString name){//设置实体名字
 
     m_name = name;
 }
+
+// authur: rdd - start -
+int VisualEntity::getCompoentId() const
+{
+    return componentId;
+}
+
+void VisualEntity::setComponetId(int id)
+{
+    componentId = id;
+}
+
+int VisualEntity::getCompoentType() const
+{
+    return compoenntType;
+}
+
+void VisualEntity::setComponetType(int type)
+{
+    compoenntType = type;
+};
+
+// authur: rdd - end -

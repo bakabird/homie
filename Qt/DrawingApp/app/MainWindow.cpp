@@ -24,6 +24,7 @@
 #include "SendToBackCommand.hpp"
 #include "FileReaderFactory.hpp"
 #include "FileWriterFactory.hpp"
+#include "componenttype.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -288,6 +289,15 @@ void MainWindow::on_actionDrawRectangle_triggered()
     */
 
     Rectangle *r = new Rectangle();
+
+    // start
+    // author: rdd
+    // 该代码编写前提，默认只要创建方形就是房间组件
+    r->setComponetType( ComponentType::Room );
+    // 前提：所有房间创建时都在坐标10,10
+    r->setComponetId( netboy->newRoom(10,10) );
+    // end
+
     m_canvas->addVisualEntity(r);
 
     //DrawDialog *d = DrawDialogFactory::CreateDrawDialog(this, r);

@@ -29,6 +29,13 @@ public:
     void setIndex(int value);
     void setName(QString name);//设置实体名字
 
+    // author: rdd - start -
+    int getCompoentId() const;
+    void setComponetId(int id);
+    int getCompoentType() const;
+    void setComponetType(int type);
+    // - end-
+
 protected:
     Group *m_parentGroup;
     ActiveSelection *m_selection;

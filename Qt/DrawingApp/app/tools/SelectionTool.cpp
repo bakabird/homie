@@ -57,33 +57,38 @@ void SelectionTool::mouseMove(QMouseEvent *event)
 
 void SelectionTool::mouseRelease(QMouseEvent *event)
 {
+    // 应该是根据当前所鼠标释放时的全局位置，通过计算来获得所点击的对象的VE | comment by rdd
     VisualEntity *clicked =
             m_canvas->getVEFromPosition(event->pos().x(), event->pos().y());
 
     if (clicked != nullptr) {
+        // 如果在某个对象上 | comment by rdd
         if (!m_hasMoved) {
+            // 如果真个鼠标事件期间没有移动过对象 | comment by rdd
             if ((event->modifiers() & Qt::ShiftModifier)) {
                 clicked->toogleSelect();
             } else {
                 m_selection->deselectAll();
                 clicked->setSelected(true);
             }
-
-            /*add socket to translate position
-            * x=clicked->getPosition().x();
-            * y=clicked->getPosition().y();
-            */
-
         }
     } else {
+        // 如果不在某个对象上 | commeny by rdd
         m_selection->deselectAll();
         m_gp->unlinkProperties();
     }
 
     if (m_hasMoved) {
+        // 动过 | comment by rdd
+        // 添加到命令栈，应该是用于撤销功能 | commeny by rdd
         m_movComm->addtoCommandStack();
         m_movComm = nullptr;
         m_hasMoved = false;
+
+        // 更新房间组件的位置
+        if(clicked->getCompoentType() == ComponentType::Room)
+            globalNetBoy->updateRoomPos(clicked->getCompoentId(), clicked->getPosition().x(), clicked->getPosition().y());
+
     } else if (m_movComm) {
         delete m_movComm;
         m_movComm = nullptr;
