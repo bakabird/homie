@@ -3,8 +3,6 @@
 #include <exception>
 #include <QDebug>
 
-#include <QProcess>
-
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +14,10 @@ int main(int argc, char *argv[])
         // 创建并显示窗口
         // 在 MainWindow 类的构造函数中已经往窗口中添加了许多UI类，并编写了相应的事件
         MainWindow w;
+
+        // 前去敲node服务器门 author: rdd
+        w.goKnockNode();
+
         w.show();
 
         // 进入事件循环

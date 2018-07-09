@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 #include <memory>
+// author: rdd
+#include <QProcess>
 
 class Canvas;
 class Tool;
@@ -34,6 +36,13 @@ public:
 
     QString getCanvasFile() const;
     void setCanvasFile(const QString &value);
+
+    // author: rdd -- start --
+    // 前去启动node服务器
+    void goKnockNode();
+    // 吃了它
+    void kiilNode();
+    // author: rdd -- end --
 
 protected:
     void closeEvent(QCloseEvent *event) override;
@@ -75,6 +84,12 @@ private:
     QString m_canvasFile;
     int m_appStackIdx;
     bool m_isFileSet;
+
+    // author: rdd -start-
+    // 是否启动了node服务器
+    bool knockNode = false;
+    QProcess* nodeserver;
+    // author: rdd -end-
 
     std::unique_ptr<SelectionTool> m_selectionTool;
     std::unique_ptr<DrawCircleTool> m_drawCircleTool;

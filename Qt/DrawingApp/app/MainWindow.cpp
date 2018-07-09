@@ -30,6 +30,9 @@
 #include <QCloseEvent>
 #include <QFileInfo>
 #include <cassert>
+// author: rdd
+#include <QDebug>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -268,6 +271,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (!promptUnsavedWork()) {
         event->ignore();
+    }else{
+        // 窗口即将被关闭 author: rdd
+        if(knockNode) kiilNode();
     }
 }
 
@@ -477,4 +483,46 @@ void MainWindow::on_actionAbout_me_3_triggered()
                        "Created by Lee Zhen Yong AKA bruceoutdoors\n\n"
                        "Wordpress: https://bruceoutdoors.wordpress.com/ \n"
                        "Source code: https://github.com/bruceoutdoors/DrawingApp");
+}
+
+// author:rdd
+void MainWindow::goKnockNode()
+{
+    knockNode = true;
+    nodeserver = new QProcess(new QObject());
+    qDebug() << QObject::tr("启动node服务器");
+
+    nodeserver->setProcessChannelMode(QProcess :: MergedChannels);
+
+    // ⚠️注意：请将服务器放到对应的地方，否则将启动失败
+    #ifdef Q_OS_MAC
+    nodeserver->start("./server/node_mac ./server/development.js",QIODevice::ReadWrite);
+    #endif
+    #ifdef Q_OS_WIN
+    nodeserver->start("./server/node_win.exe ./server/development.js",QIODevice::ReadWrite);
+    #endif
+
+    // 等待服务器启动，超时时间为2秒
+    if(nodeserver->waitForStarted(2))
+    {
+        qDebug() << QObject::tr("服务器启动成功");
+        // 确认服务器存活超过5秒 -> 就假设服务器成功运行
+        if(nodeserver->waitForFinished(5000)){
+            QByteArray result = nodeserver->readAll();
+            qDebug() << QObject::tr("服务器程序被关闭");
+        }else
+            qDebug() << QObject::tr("服务器程序正常运行");
+    }
+};
+
+void MainWindow::kiilNode()
+{
+    if(nodeserver) {
+        nodeserver->close();
+        nodeserver->kill();
+        nodeserver->waitForFinished();
+    }
+
+    delete nodeserver;
+    nodeserver = NULL;
 }
