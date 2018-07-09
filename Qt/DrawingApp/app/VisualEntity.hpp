@@ -3,6 +3,7 @@
 #include "ISelectable.hpp"
 #include "IDrawable.hpp"
 #include "ITransformable.hpp"
+#include "componenttype.h"
 #include <QString>
 
 class QPainter;
@@ -34,5 +35,11 @@ protected:
 
     int m_index;
     QString m_name;
+
+    // author: rdd - start -
+    // 用以区别各个组件、方便发请求
+    int componentId = -1;
+    int compoenntType = ComponentType.None;
+    // author: rdd - end -
 };
 
