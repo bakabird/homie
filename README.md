@@ -18,7 +18,7 @@
     4. [项目开发计划](https://docs.qq.com/doc/BJSnlo2XeUgf4vIuq43tUlWr1WO1810H685u0)
     5. [需求规格说明](https://docs.qq.com/doc/BJSnlo2XeUgf4dYngl0i8UyL2c5Bf93o8uYZ2)
 2. 使用的设计图均放在[Presson](http://www.processon.com/team/invite/5b38ea4ce4b06bb4a4269980/uUYTdM54)小组中(密码另寻)
-3. 另有[node服务器数据相关服务的接口文档以及数据库设计文档](http://www.bakabird.top:25020/)。
+3. 另有[node服务器数据相关服务的接口文档以及数据库设计文档](http://www.bakabird.top:25020/)。
 
 
 
