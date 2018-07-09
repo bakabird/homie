@@ -11,13 +11,14 @@
 ## 文档
 
 1. 腾讯文档链接如下，需要编辑权限时请进入并进行申请
-  0. [总汇总](https://docs.qq.com/sheet/BJSnlo2XeUgf4w40Yl3AXIKQ46Hest1VElQP1me8sv2zny1i39gZHO1XUM0V1rntt74Hy4DV0)
-  1. [软件设计说明](https://docs.qq.com/doc/BJSnlo2XeUgf4zj9sU0XNxIy2bKRP147tP8H0)
-  2. [测试计划](https://docs.qq.com/doc/BJSnlo2XeUgf4qiHVU0PBpNv3qdYkf4VbpPT3)
-  3. [项目开发计划](https://docs.qq.com/doc/BJSnlo2XeUgf4vIuq43tUlWr1WO1810H685u0)
-  4. [需求规格说明](https://docs.qq.com/doc/BJSnlo2XeUgf4dYngl0i8UyL2c5Bf93o8uYZ2)
-2. 使用的设计图均放在 [Presson](http://www.processon.com/team/invite/5b38ea4ce4b06bb4a4269980/uUYTdM54) 小组中(密码另寻)
-3. 另有 [node服务器数据相关服务的接口文档以及数据库设计文档](http://www.bakabird.top:25020/) 。
+
+    0. [总汇总](https://docs.qq.com/sheet/BJSnlo2XeUgf4w40Yl3AXIKQ46Hest1VElQP1me8sv2zny1i39gZHO1XUM0V1rntt74Hy4DV0)
+    1. [软件设计说明](https://docs.qq.com/doc/BJSnlo2XeUgf4zj9sU0XNxIy2bKRP147tP8H0)
+    2. [测试计划](https://docs.qq.com/doc/BJSnlo2XeUgf4qiHVU0PBpNv3qdYkf4VbpPT3)
+    3. [项目开发计划](https://docs.qq.com/doc/BJSnlo2XeUgf4vIuq43tUlWr1WO1810H685u0)
+    4. [需求规格说明](https://docs.qq.com/doc/BJSnlo2XeUgf4dYngl0i8UyL2c5Bf93o8uYZ2)
+2. 使用的设计图均放在[Presson](http://www.processon.com/team/invite/5b38ea4ce4b06bb4a4269980/uUYTdM54)小组中(密码另寻)
+3. 另有[node服务器数据相关服务的接口文档以及数据库设计文档](http://www.bakabird.top:25020/)。
 
 
 

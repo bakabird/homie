@@ -40,24 +40,35 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // 画布
     m_canvas = new Canvas(this);
+    // 右侧参数设置栏
     m_gp = &GlobalDrawProperties::getInstance();
+    // 不知道
     m_mcs = &MainCommandStack::getInstance();
 
     m_mcs->getCurrentIndexChangedSignal()
             ->connect([=](int){ mainCommandStackHasChanged(); });
 
+    // 选择工具
     m_selectionTool = std::unique_ptr<SelectionTool>
             (new SelectionTool(m_canvas));
+    // 画圆工具
     m_drawCircleTool = std::unique_ptr<DrawCircleTool>
             (new DrawCircleTool(m_canvas));
+    // 画方工具
     m_drawRectangleTool = std::unique_ptr<DrawRectangleTool>
             (new DrawRectangleTool(m_canvas));
+    // 画线工具
     m_drawLineTool = std::unique_ptr<DrawLineTool>
             (new DrawLineTool(m_canvas));
 
+    // 在画布中
     m_canvas->setActiveTool(m_selectionTool.get());
 
+
+    // --- --- ---
+    // 设置右侧参数设置栏支持哪些参数 -- start --
     PropertyColorButton *fillColorBtn =
             new PropertyColorButton(this, getCanvas(), QColor(200, 200, 200));
 
@@ -76,8 +87,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VEProp->addRow("Line Color", lineColorBtn);
     ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
     ui->VEProp->addRow("Name",nameLineEdit);
+    // 设置右侧参数设置栏支持哪些参数 -- end --
+    // --- --- ---
 
+    // 画布置于中央
     setCentralWidget(m_canvas);
+    // 设置窗口标题
     this->setWindowTitle(getTitle());
 }
 
