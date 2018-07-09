@@ -2,8 +2,11 @@
 
 #include <QMainWindow>
 #include <memory>
+// start
 // author: rdd
+#include "netboy.h"
 #include <QProcess>
+// end
 
 class Canvas;
 class Tool;
@@ -86,6 +89,10 @@ private:
     bool m_isFileSet;
 
     // author: rdd -start-
+    // __NetBoy相关
+    NetBoy* netboy;
+
+    // __node服务器相关
     // 是否启动了node服务器
     bool knockNode = false;
     QProcess* nodeserver;

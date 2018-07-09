@@ -6,8 +6,8 @@ class ComponentType
 {
 public:
     ComponentType();
-    static int None = -1;
-    static int Room = -1;
+    static const int None = -1;
+    static const int Room = 0;
 };
 
 #endif // COMPONENTTYPE_H

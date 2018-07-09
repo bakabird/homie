@@ -8,6 +8,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QColor>
+
 SelectionTool::SelectionTool(Canvas *canvas) :
     Tool(canvas),
     m_movComm(nullptr), m_clicked(nullptr),

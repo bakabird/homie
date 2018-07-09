@@ -39,7 +39,7 @@ protected:
     // author: rdd - start -
     // 用以区别各个组件、方便发请求
     int componentId = -1;
-    int compoenntType = ComponentType.None;
+    int compoenntType = ComponentType::None;
     // author: rdd - end -
 };
 

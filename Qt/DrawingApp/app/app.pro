@@ -53,7 +53,8 @@ SOURCES += main.cpp \
     fileio/FileReaderFactory.cpp \
     fileio/FileWriterFactory.cpp \
     PropertyNameLineEdit.cpp \
-    componenttype.cpp
+    componenttype.cpp \
+    netboy.cpp
 
 HEADERS  += \
     MainWindow.hpp \
@@ -104,7 +105,8 @@ HEADERS  += \
     commands/ChangePropertyCommandList.hpp \
     Signal.hpp \
     PropertyNameLineEdit.hpp \
-    componenttype.h
+    componenttype.h \
+    netboy.h
 
 FORMS    += mainwindow.ui \
     drawdialog.ui

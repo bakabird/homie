@@ -1,5 +1,9 @@
 #pragma once
 
+// author: rdd
+#include <netboy.h>
+
+
 class QEvent;
 class QMouseEvent;
 class QKeyEvent;
@@ -13,6 +17,9 @@ public:
 
     bool handleEvent(QEvent *event);
 
+    // author: rdd
+    void setNetBoy(NetBoy* gb_nb);
+
 protected:
     virtual void mousePress(QMouseEvent*) {}
     virtual void mouseMove(QMouseEvent*) {}
@@ -20,5 +27,8 @@ protected:
     virtual void keyPress(QKeyEvent*) {}
 
     Canvas *m_canvas;
+
+    // author: rdd
+    NetBoy* globalNetBoy;
 };
 

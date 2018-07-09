@@ -53,34 +53,30 @@ MainWindow::MainWindow(QWidget *parent) :
     m_mcs->getCurrentIndexChangedSignal()
             ->connect([=](int){ mainCommandStackHasChanged(); });
 
-    // 选择工具
     m_selectionTool = std::unique_ptr<SelectionTool>
             (new SelectionTool(m_canvas));
-    // 画圆工具
     m_drawCircleTool = std::unique_ptr<DrawCircleTool>
             (new DrawCircleTool(m_canvas));
-    // 画方工具
     m_drawRectangleTool = std::unique_ptr<DrawRectangleTool>
             (new DrawRectangleTool(m_canvas));
-    // 画线工具
     m_drawLineTool = std::unique_ptr<DrawLineTool>
             (new DrawLineTool(m_canvas));
 
-    // 在画布中
+    // 在需要使用netboy的工具中设置netboy
+    netboy = new NetBoy();
+    m_selectionTool->setNetBoy(netboy);
+    m_drawRectangleTool->setNetBoy(netboy);
+
+    // 默认使用选择工具
     m_canvas->setActiveTool(m_selectionTool.get());
 
-
-    // --- --- ---
     // 设置右侧参数设置栏支持哪些参数 -- start --
     PropertyColorButton *fillColorBtn =
             new PropertyColorButton(this, getCanvas(), QColor(200, 200, 200));
-
     PropertyColorButton *lineColorBtn =
             new PropertyColorButton(this, getCanvas(), QColor(0, 0, 0));
-
     PropertySpinBox *thicknessSpinBox =
             new PropertySpinBox(this, getCanvas(), 2);
-
     PropertyNameLineEdit *nameLineEdit =
             new PropertyNameLineEdit(this, getCanvas(), "hello");
 
@@ -91,7 +87,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
     ui->VEProp->addRow("Name",nameLineEdit);
     // 设置右侧参数设置栏支持哪些参数 -- end --
-    // --- --- ---
 
     // 画布置于中央
     setCentralWidget(m_canvas);

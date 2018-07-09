@@ -1,2 +1,4 @@
 pack
 .vscode
+build-DrawingApp-Desktop_Qt_5_11_1_clang_64bit-Debug
+/build/*
