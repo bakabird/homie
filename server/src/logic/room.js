@@ -9,6 +9,9 @@ module.exports = class extends think.Logic {
       y: {
         required: true,
         int: true
+      },
+      name: {
+        string: true
       }
     }
   }
@@ -22,6 +25,9 @@ module.exports = class extends think.Logic {
       y: {
         required: true,
         int: true
+      },
+      name: {
+        string: true
       }
     }
   }
