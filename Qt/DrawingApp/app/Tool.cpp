@@ -34,3 +34,6 @@ bool Tool::handleEvent(QEvent *event)
     return true;
 }
 
+void Tool::setNetBoy(NetBoy *gb_nb){
+    globalNetBoy = gb_nb;
+}

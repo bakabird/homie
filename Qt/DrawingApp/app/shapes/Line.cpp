@@ -1,5 +1,6 @@
 #include "Line.hpp"
 #include <QPainter>
+#include <cstdlib>
 #include <cmath>
 
 Line::Line()

@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            network
 
 CONFIG += c++11
 
@@ -51,7 +52,9 @@ SOURCES += main.cpp \
     fileio/JsonFileWriter.cpp \
     fileio/FileReaderFactory.cpp \
     fileio/FileWriterFactory.cpp \
-    PropertyNameLineEdit.cpp
+    PropertyNameLineEdit.cpp \
+    componenttype.cpp \
+    netboy.cpp
 
 HEADERS  += \
     MainWindow.hpp \
@@ -101,7 +104,9 @@ HEADERS  += \
     commands/ChangePropertyCommand.hpp \
     commands/ChangePropertyCommandList.hpp \
     Signal.hpp \
-    PropertyNameLineEdit.hpp
+    PropertyNameLineEdit.hpp \
+    componenttype.h \
+    netboy.h
 
 FORMS    += mainwindow.ui \
     drawdialog.ui

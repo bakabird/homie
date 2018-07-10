@@ -24,12 +24,16 @@
 #include "SendToBackCommand.hpp"
 #include "FileReaderFactory.hpp"
 #include "FileWriterFactory.hpp"
+#include "componenttype.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
 #include <QFileInfo>
 #include <cassert>
+// author: rdd
+#include <QDebug>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,8 +44,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // 画布
     m_canvas = new Canvas(this);
+    // 右侧参数设置栏
     m_gp = &GlobalDrawProperties::getInstance();
+    // 不知道
     m_mcs = &MainCommandStack::getInstance();
 
     m_mcs->getCurrentIndexChangedSignal()
@@ -56,17 +63,21 @@ MainWindow::MainWindow(QWidget *parent) :
     m_drawLineTool = std::unique_ptr<DrawLineTool>
             (new DrawLineTool(m_canvas));
 
+    // 在需要使用netboy的工具中设置netboy
+    netboy = new NetBoy();
+    m_selectionTool->setNetBoy(netboy);
+    m_drawRectangleTool->setNetBoy(netboy);
+
+    // 默认使用选择工具
     m_canvas->setActiveTool(m_selectionTool.get());
 
+    // 设置右侧参数设置栏支持哪些参数 -- start --
     PropertyColorButton *fillColorBtn =
             new PropertyColorButton(this, getCanvas(), QColor(200, 200, 200));
-
     PropertyColorButton *lineColorBtn =
             new PropertyColorButton(this, getCanvas(), QColor(0, 0, 0));
-
     PropertySpinBox *thicknessSpinBox =
             new PropertySpinBox(this, getCanvas(), 2);
-
     PropertyNameLineEdit *nameLineEdit =
             new PropertyNameLineEdit(this, getCanvas(), "hello");
 
@@ -76,8 +87,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VEProp->addRow("Line Color", lineColorBtn);
     ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
     ui->VEProp->addRow("Name",nameLineEdit);
+    // 设置右侧参数设置栏支持哪些参数 -- end --
 
+    // 画布置于中央
     setCentralWidget(m_canvas);
+    // 设置窗口标题
     this->setWindowTitle(getTitle());
 }
 
@@ -253,6 +267,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (!promptUnsavedWork()) {
         event->ignore();
+    }else{
+        // 窗口即将被关闭 author: rdd
+        if(knockNode) kiilNode();
     }
 }
 
@@ -272,6 +289,15 @@ void MainWindow::on_actionDrawRectangle_triggered()
     */
 
     Rectangle *r = new Rectangle();
+
+    // start
+    // author: rdd
+    // 该代码编写前提，默认只要创建方形就是房间组件
+    r->setComponetType( ComponentType::Room );
+    // 前提：所有房间创建时都在坐标10,10
+    r->setComponetId( netboy->newRoom(10,10) );
+    // end
+
     m_canvas->addVisualEntity(r);
 
     //DrawDialog *d = DrawDialogFactory::CreateDrawDialog(this, r);
@@ -462,4 +488,46 @@ void MainWindow::on_actionAbout_me_3_triggered()
                        "Created by Lee Zhen Yong AKA bruceoutdoors\n\n"
                        "Wordpress: https://bruceoutdoors.wordpress.com/ \n"
                        "Source code: https://github.com/bruceoutdoors/DrawingApp");
+}
+
+// author:rdd
+void MainWindow::goKnockNode()
+{
+    knockNode = true;
+    nodeserver = new QProcess(new QObject());
+    qDebug() << QObject::tr("启动node服务器");
+
+    nodeserver->setProcessChannelMode(QProcess :: MergedChannels);
+
+    // ⚠️注意：请将服务器放到对应的地方，否则将启动失败
+    #ifdef Q_OS_MAC
+    nodeserver->start("./server/node_mac ./server/development.js",QIODevice::ReadWrite);
+    #endif
+    #ifdef Q_OS_WIN
+    nodeserver->start("./server/node_win.exe ./server/development.js",QIODevice::ReadWrite);
+    #endif
+
+    // 等待服务器启动，超时时间为2秒
+    if(nodeserver->waitForStarted(2))
+    {
+        qDebug() << QObject::tr("服务器启动成功");
+        // 确认服务器存活超过5秒 -> 就假设服务器成功运行
+        if(nodeserver->waitForFinished(5000)){
+            QByteArray result = nodeserver->readAll();
+            qDebug() << QObject::tr("服务器程序被关闭");
+        }else
+            qDebug() << QObject::tr("服务器程序正常运行");
+    }
+};
+
+void MainWindow::kiilNode()
+{
+    if(nodeserver) {
+        nodeserver->close();
+        nodeserver->kill();
+        nodeserver->waitForFinished();
+    }
+
+    delete nodeserver;
+    nodeserver = NULL;
 }
