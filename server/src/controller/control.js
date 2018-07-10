@@ -14,6 +14,11 @@ module.exports = class extends Base {
 
     return this.success(re);
   }
+  modeSwitchAction(){
+    const aimMode = this.post('aimMode')
+    CURMODE = aimMode;
+    this.success(CURMODE)
+  }
   async allRoomAction(){
     return this.success(await this.model('room').all())
   }
