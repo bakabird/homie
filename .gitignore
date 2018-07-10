@@ -2,6 +2,6 @@ pack
 .vscode
 Qt/build-DrawingApp-Desktop_Qt_5_11_1_clang_64bit-Debug/*
 Qt/DrawingApp/build/*
-Qt/DrawingApp/DrawingApp.pro
+Qt/DrawingApp/DrawingApp.pro.user
 Qt/DrawingApp/DrawingApp.pro.user.223640c
 
