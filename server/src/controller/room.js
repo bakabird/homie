@@ -5,8 +5,8 @@ module.exports = class extends Base {
   async newAction() {
     const x = this.post('x')
     const y = this.post('y')
-    const defaultName = `房间${(await this.model('room').RoomNum()) + 1}`
-    const rlt = await this.model('room').newRoom(x, y, defaultName)
+    const name = think.isEmpty(this.post('name')) ? `房间${(await this.model('room').RoomNum()) + 1}` : this.post('name')
+    const rlt = await this.model('room').newRoom(x, y, name)
     this.success({
       roomId: rlt
     })
