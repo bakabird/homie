@@ -17,4 +17,7 @@ module.exports = class extends think.Logic {
   allRoomAction(){
     this.allowMethods = "get"
   }
+  flashAction(){
+    this.allowMethods = "get"
+  }
 };
