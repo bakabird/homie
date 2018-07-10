@@ -4,3 +4,5 @@ Qt/build-DrawingApp-Desktop_Qt_5_11_1_clang_64bit-Debug/*
 Qt/DrawingApp/build/*
 Qt/DrawingApp/build/DrawingApp.app/*
 Qt/DrawingApp/build/DrawingAppUnitTests.app/*
+Qt/DrawingApp/DrawingApp.pro.user
+Qt/DrawingApp/DrawingApp.pro.user.223640c
