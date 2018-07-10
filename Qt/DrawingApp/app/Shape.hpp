@@ -4,6 +4,7 @@
 #include "ILine.hpp"
 #include "VisualEntity.hpp"
 
+
 class Shape : public VisualEntity, public IFillable, public ILine
 {
 public:

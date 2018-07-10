@@ -1,11 +1,11 @@
 #include "Rectangle.hpp"
 #include <QPainter>
-
+#include <QLabel>
 Rectangle::Rectangle()
 {
     setPosition(QPoint(10, 10));
-    m_width = 100;
-    m_height = 50;
+    m_width = 150;
+    m_height = 150;
 }
 
 Rectangle::~Rectangle()
@@ -22,19 +22,17 @@ void Rectangle::draw(QPainter *painter)
 
     pen.setWidth(getLineThickness());
 
+
+    //painter->setBrush();
     painter->setBrush(brush);
     painter->setPen(pen);
-
     painter->drawRect(QRect(getPosition().x(),
                             getPosition().y(),
                             m_width, m_height));
-    
-/*
-    painter->drawRect(QRect(getPosition().x(),
-                            getPosition().y(),
-                            100, 100));
-                            */
 
+    //给房间（矩形）标记名字
+    painter->drawText(getPosition().x()+10,
+                      getPosition().y()+15,"HEllo");
 }
 
 QRect Rectangle::getBoundary()

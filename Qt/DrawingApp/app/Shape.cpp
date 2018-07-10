@@ -1,5 +1,6 @@
 #include "Shape.hpp"
 
+
 Shape::Shape()
 {
     setFillColor(QColor(50, 150, 0));
