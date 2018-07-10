@@ -94,6 +94,7 @@
    </attribute>
    <addaction name="actionSelectionTool"/>
    <addaction name="actionDrawRectangle"/>
+   <addaction name="actionDrawCircle"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="focusPolicy">

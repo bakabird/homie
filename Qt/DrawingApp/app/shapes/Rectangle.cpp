@@ -4,8 +4,8 @@
 Rectangle::Rectangle()
 {
     setPosition(QPoint(10, 10));
-    m_width = 150;
-    m_height = 100;
+    m_width = 100;
+    m_height = 50;
 }
 
 Rectangle::~Rectangle()
@@ -28,7 +28,7 @@ void Rectangle::draw(QPainter *painter)
     painter->drawRect(QRect(getPosition().x(),
                             getPosition().y(),
                             m_width, m_height));
-
+    
 /*
     painter->drawRect(QRect(getPosition().x(),
                             getPosition().y(),
