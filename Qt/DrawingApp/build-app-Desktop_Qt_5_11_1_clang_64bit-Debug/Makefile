@@ -280,6 +280,7 @@ DIST          = /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/spec_pre.p
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/spec_post.prf \
+		../app/.qmake.stash \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/toolchain.prf \
@@ -552,6 +553,7 @@ Makefile: ../app/app.pro /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/macx-clang
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/toolchain.prf \
@@ -723,6 +725,7 @@ Makefile: ../app/app.pro /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/macx-clang
 /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/qt_config.prf:
 /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/isteveyang/Qt/5.11.1/clang_64/mkspecs/features/toolchain.prf:
@@ -799,6 +802,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r ../build/DrawingApp.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 

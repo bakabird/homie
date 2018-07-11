@@ -11,10 +11,12 @@ class NetBoy : public QObject
 public:
     explicit NetBoy(QObject *parent = nullptr);
     void hey();
+    void refreshDB();
     int newRoom(int x, int y);
     void updateRoomPos(int roomId,int x, int y);
     void changeRoomName(int roomId, const char *roomName);
     int switchMode(int aimMode);
+
 signals:
 
 public slots:
