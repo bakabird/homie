@@ -6,6 +6,7 @@ Rectangle::Rectangle()
     setPosition(QPoint(10, 10));
     m_width = 150;
     m_height = 150;
+    setFillColor(QColor(193, 255, 243));
 }
 
 Rectangle::~Rectangle()

@@ -14,6 +14,7 @@ public:
     int newRoom(int x, int y);
     void updateRoomPos(int roomId,int x, int y);
     void changeRoomName(int roomId, const char *roomName);
+
 signals:
 
 public slots:
