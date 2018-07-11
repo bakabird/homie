@@ -106,8 +106,7 @@ HEADERS  += \
     Signal.hpp \
     PropertyNameLineEdit.hpp \
     componenttype.h \
-    netboy.h \
-    ShapeLable.hpp
+    netboy.h
 
 FORMS    += mainwindow.ui \
     drawdialog.ui

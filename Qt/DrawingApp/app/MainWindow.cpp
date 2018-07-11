@@ -34,6 +34,9 @@
 // author: rdd
 #include <QDebug>
 #include <QLabel>
+#include <QPushButton>
+
+#define Q_OS_WIN
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -82,6 +85,7 @@ MainWindow::MainWindow(QWidget *parent) :
             new PropertySpinBox(this, getCanvas(), 2);
     PropertyNameLineEdit *nameLineEdit =
             new PropertyNameLineEdit(this, getCanvas(), "hello");
+    QPushButton *startButton = new QPushButton(tr("开始模拟"));
 
     m_gp->setup(fillColorBtn, lineColorBtn, thicknessSpinBox, nameLineEdit);
 
@@ -89,6 +93,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VEProp->addRow("Line Color", lineColorBtn);
     ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
     ui->VEProp->addRow("Name",nameLineEdit);
+    //ui->VEProp->addRow("",startButton);
+    ui->VEProp->addWidget(startButton);
     // 设置右侧参数设置栏支持哪些参数 -- end --
 
     // 画布置于中央
@@ -277,9 +283,29 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::on_actionDrawCircle_triggered()
 {
+    /*
     uncheckAllToolbar();
     ui->actionDrawCircle->setChecked(true);
     setActiveTool(m_drawCircleTool.get());
+    */
+    Circle *c = new Circle();
+
+    c->setComponetType( ComponentType::Light );
+    m_canvas->addVisualEntity(c);
+
+
+
+    // 前提：所有房间创建时都在坐标10,10
+   // c->setComponetId( netboy->newRoom(10,10) );
+    //DrawDialog *d = DrawDialogFactory::CreateDrawDialog(this, c);
+    //d->exec();
+    //delete d;
+
+    ActiveSelection::getInstance().deselectAll();
+    c->setSelected(true);
+
+    DrawCommand *comm = new DrawCommand(c);
+    comm->addtoCommandStack();
 }
 
 void MainWindow::on_actionDrawRectangle_triggered()
