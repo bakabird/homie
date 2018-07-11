@@ -10,12 +10,14 @@ module.exports = class extends Base {
 
       // setOn 的置是否合法
       console.log(think.isEmpty( await this.model('room').checkRoom(setOn) ),setOn)
-      if( setOn != -1 && think.isEmpty( await this.model('room').checkRoom(setOn) ) )
+      console.log(setOn != -1 && think.isEmpty( await this.model('room').checkRoom(setOn) ))
+      if( setOn != -1 && think.isEmpty( await this.model('room').checkRoom(setOn) ) ){
         this.fail(1002,'invalid setOn')
+        return
+      }
 
+      // 建一个灯 并且完成安置
       const eid = await this.model('eleEquipment').add({ name })
-
-      // 建一个灯
       await this.model('light').newLight(eid)
       await this.model('roomsEleEquipment').add({
         rid: setOn,

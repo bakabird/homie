@@ -62,7 +62,7 @@ homieDb.serialize(function () {
   );`);
 
   // 往房间表中添加一个室外房间
-  homieDb.run(`INSERT INTO room VALUES (-1, 0, 0, 0, '室外')`)
+  homieDb.run(`INSERT INTO room VALUES (1, 0, 0, 0, '室外')`)
   
 });
 
