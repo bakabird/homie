@@ -10,4 +10,9 @@ module.exports = class extends think.Model {
       id
     }).delete();
   }
+  async now(id){
+    return await this.where({
+      id
+    }).field('lightUp').find()
+  }
 };
