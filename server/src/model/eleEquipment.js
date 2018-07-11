@@ -8,4 +8,7 @@ module.exports = class extends think.Model {
   updateName(id, name){
     return this.where({ id }).update({ name })
   }
+  remove(id){
+    return this.where({ id }).delete()
+  }
 };

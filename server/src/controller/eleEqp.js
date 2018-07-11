@@ -27,7 +27,7 @@ module.exports = class extends Base {
         // 向对应的电器表进行创建
         switch(eleType){
           case 'light':
-            await this.model('light').newLight(eid)
+            await this.model('light').new(eid)
             break;
           default:
             break;
@@ -86,5 +86,36 @@ module.exports = class extends Base {
     }) )
     return true
 
+  }
+  async delAction(){
+    const eid = this.post('eid')
+
+    // 检查
+    const eqp = await this.model('eleEquipment').checkEleEquipment(eid)
+    if(think.isEmpty(eqp)) {
+      this.fail(1002,'invalid eid')
+      return false
+    }
+
+    // 删掉外键依赖
+    // 删掉电器种类表中实体
+    const eleType = eqp.type
+    switch(eleType){
+      case 'light':
+        // 从灯表中删掉实体
+        await this.model('light').remove(eid)
+        break;
+      default:
+        break;
+    }
+    // 删掉房间内电器
+    await this.model('roomsEleEquipment').remove(eid)
+
+    // 删掉实体
+    // 删掉电器
+    await this.model('eleEquipment').remove(eid)
+
+    this.success();
+    return true
   }
 };

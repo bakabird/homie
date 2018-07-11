@@ -9,4 +9,7 @@ module.exports = class extends think.Model {
       rid
     })
   }
+  remove(eid){
+    return this.where({ eid }).delete();
+  }
 };
