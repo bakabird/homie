@@ -38,8 +38,31 @@ homieDb.serialize(function () {
     entry BLOB         NOT NULL,
     name  VARCHAR (15) NOT NULL
   );`);
-  // homieDb.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-  //     console.log(row.id + ": " + row.info);
-  // });
+  // eleEquipment
+  homieDb.run(`CREATE TABLE eleEquipment (
+    id   INTEGER      PRIMARY KEY
+                      NOT NULL,
+    name VARCHAR (15) NOT NULL
+  );`);
+  // light
+  homieDb.run(`CREATE TABLE light (
+    id      INTEGER PRIMARY KEY
+                    NOT NULL
+                    REFERENCES eleEquipment (id),
+    lightUp BLOB    NOT NULL
+  );`);
+  // roomsEleEquipment
+  homieDb.run(`CREATE TABLE roomsEleEquipment (
+    rid INTEGER PRIMARY KEY
+                NOT NULL
+                REFERENCES room (id),
+    eid INTEGER NOT NULL
+                UNIQUE
+                REFERENCES eleEquipment (id)
+  );`);
+
+  // 往房间表中添加一个室外房间
+  homieDb.run(`INSERT INTO room VALUES (-1, 0, 0, 0, '室外')`)
+  
 });
 
