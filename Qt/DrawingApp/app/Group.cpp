@@ -1,7 +1,7 @@
 #include "Group.hpp"
 #include <exception>
 #include <algorithm>
-
+#include <qdebug.h>
 Group::Group()
 {
 
@@ -24,6 +24,14 @@ void Group::add(VisualEntity *val)
     m_children.push_back(val);
     int index = m_children.size() - 1;
     val->setIndex(index);
+
+    //add default name for VisualEntity
+    QString str = QString::number(index);
+    if(val->getCompoentType()==ComponentType::Room)
+        val->setName("room"+str);
+    if(val->getCompoentType()==ComponentType::Light)
+        val->setName("Light"+str);
+    //--end--
 }
 
 void Group::draw(QPainter *painter)

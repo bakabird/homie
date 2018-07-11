@@ -17,9 +17,7 @@ class GlobalDrawProperties : public QObject
 
 public:
     static GlobalDrawProperties& getInstance();
-    void setup(PropertyColorButton *fillColorProp,
-               PropertyColorButton *lineColorProp,
-               PropertySpinBox *thicknessProp, PropertyNameLineEdit *nameLineProp);
+    void setup(PropertyColorButton *fillColorProp, PropertyColorButton *lineColorProp, PropertySpinBox *thicknessProp, PropertyNameLineEdit *nameLineProp);
     void setVEProperties(VisualEntity *ve);
     QColor getFillColor();
     QColor getLineColor();

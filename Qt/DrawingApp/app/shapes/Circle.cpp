@@ -3,9 +3,10 @@
 #include <QDebug>
 
 Circle::Circle() :
-    m_radius(50)
+    m_radius(20)
 {
     setPosition(QPoint(50,50));
+    setFillColor(QColor(85, 255, 127));
 }
 
 Circle::~Circle()
@@ -26,6 +27,10 @@ void Circle::draw(QPainter *painter)
     painter->setPen(pen);
 
     painter->drawEllipse(getPosition(), m_radius, m_radius);
+
+    //给设备（灯：圆形）标记
+    painter->drawText(getPosition().x()-17,
+                      getPosition().y(),m_name);
 
 }
 

@@ -16,8 +16,8 @@ GlobalDrawProperties &GlobalDrawProperties::getInstance()
 }
 
 void GlobalDrawProperties::setup(PropertyColorButton *fillColorProp,
-                                  PropertyColorButton *lineColorProp,
-                                  PropertySpinBox *thicknessProp,
+                                 PropertyColorButton *lineColorProp,
+                                 PropertySpinBox *thicknessProp,
                                   PropertyNameLineEdit *nameLineProp
                                  )
 {
