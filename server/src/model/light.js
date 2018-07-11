@@ -15,4 +15,18 @@ module.exports = class extends think.Model {
       id
     }).field('lightUp').find()
   }
+  switchOn(id){
+    return this.where({
+      id
+    }).update({
+      lightUp: true
+    })
+  }
+  switchOff(id){
+    return this.where({
+      id
+    }).update({
+      lightUp: false
+    })
+  }
 };
