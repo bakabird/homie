@@ -23,6 +23,9 @@ module.exports = class extends Base {
     return this.success(await this.model('room').all())
   }
   async flashAction(){
+    await this.model('roomsEleEquipment').delete();
+    await this.model('light').delete();
+    await this.model('eleEquipment').delete();
     await this.model('room').delete()
     this.WSBC('roomChange')
   }
