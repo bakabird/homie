@@ -17,8 +17,37 @@ module.exports = class extends think.Logic {
       },
       setUp: {
         int: {
-          min: -1
+          min: 0
         }
+      }
+    }
+  }
+  updateAction(){
+    this.allowMethods = "post"
+    this.rules = {
+      eid: {
+        required: true,
+        int: true
+      },
+      name: {
+        string: true,
+        length: {
+          max: 14
+        }
+      },
+      setOn: {
+        int: {
+          min: 0
+        }
+      }
+    }
+  }
+  delAction(){
+    this.allowMethods = "post"
+    this.rules = {
+      eid: {
+        required: true,
+        int: true
       }
     }
   }
