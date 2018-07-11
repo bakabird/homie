@@ -71,7 +71,7 @@ void VisualEntity::setIndex(int value)
 QString VisualEntity::getName() const{ //获取实体名字
     return m_name;
 }
-void VisualEntity::setName(QString name){//设置实体名字
+void VisualEntity::setName(const QString &name){//设置实体名字
 
     m_name = name;
 }

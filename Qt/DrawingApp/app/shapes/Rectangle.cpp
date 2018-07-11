@@ -30,9 +30,9 @@ void Rectangle::draw(QPainter *painter)
                             getPosition().y(),
                             m_width, m_height));
 
-    //给房间（矩形）标记名字
+    //给房间（矩形）标记
     painter->drawText(getPosition().x()+10,
-                      getPosition().y()+15,"HEllo");
+                      getPosition().y()+15,m_name);
 }
 
 QRect Rectangle::getBoundary()

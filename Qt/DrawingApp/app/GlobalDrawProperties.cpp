@@ -107,6 +107,14 @@ void GlobalDrawProperties::update(size_t selSize)
     };
 
     const static auto setNameLineFunc =[=](QString name){
+        ChangeLineEditCommand *comm=new ChangeLineEditCommand();
+        if (comm->canExecute()) {
+            comm->setValue(name);
+            comm->execute();
+            comm->addtoCommandStack();
+        } else {
+            delete comm;
+        }
 
     };
 
@@ -151,10 +159,10 @@ void GlobalDrawProperties::update(size_t selSize)
         m_fillColorProp->setGetterSetter(
                     [=]() { return shape->getFillColor(); },
                     setFillColorFunc);
-       /* m_nameLineProp->setGetterSetter(
+       m_nameLineProp->setGetterSetter(
                     [=]() { return shape->getName(); },
-                    setName);
-                    */
+                    setNameLineFunc);
+
     }
 }
 

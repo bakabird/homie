@@ -27,7 +27,7 @@ public:
     int getIndex() const;
     QString getName() const; //获取实体名字
     void setIndex(int value);
-    void setName(QString name);//设置实体名字
+    void setName(const QString &name);//设置实体名字
 
     // author: rdd - start -
     int getCompoentId() const;

@@ -3,6 +3,7 @@
 #include "ChangePropertyCommand.hpp"
 #include "IFillable.hpp"
 #include "ILine.hpp"
+#include "VisualEntity.hpp"
 
 typedef
 ChangePropertyCommand<
@@ -24,5 +25,12 @@ ILine,
 int,
 &ILine::setLineThickness,
 &ILine::getLineThickness> ChangeLineThicknessCommand;
+
+typedef
+ChangePropertyCommand<
+VisualEntity,
+QString,
+&VisualEntity::setName,
+&VisualEntity::getName> ChangeLineEditCommand;
 
 

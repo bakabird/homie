@@ -48,12 +48,14 @@ MainWindow::MainWindow(QWidget *parent) :
     m_canvas = new Canvas(this);
     // 右侧参数设置栏
     m_gp = &GlobalDrawProperties::getInstance();
-    // 不知道
+    // 命令栈
     m_mcs = &MainCommandStack::getInstance();
 
     m_mcs->getCurrentIndexChangedSignal()
             ->connect([=](int){ mainCommandStackHasChanged(); });
 
+
+    //选择工具
     m_selectionTool = std::unique_ptr<SelectionTool>
             (new SelectionTool(m_canvas));
     m_drawCircleTool = std::unique_ptr<DrawCircleTool>
