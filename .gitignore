@@ -5,7 +5,8 @@ Qt/DrawingApp/build/*
 Qt/DrawingApp/DrawingApp.pro.user
 Qt/DrawingApp/DrawingApp.pro.user.223640c
 Qt/build-app-Desktop_Qt_5_11_1_clang_64bit-Debug/*
-Qt/DrawingApp/build-app-Desktop_Qt_5_11_1_clang_64bit-Debug
+Qt/DrawingApp/build-app-Desktop_Qt_5_11_1_clang_64bit-Debug/
+Qt/DrawingApp/build-app-Desktop_Qt_5_11_1_clang_64bit-Debug/*
 # C++ objects and libs
 *.slo
 *.lo
@@ -49,3 +50,4 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
