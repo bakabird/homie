@@ -120,3 +120,41 @@ void NetBoy::changeRoomName(int roomId,const char *roomName)
     QByteArray jsBytes = res->readAll();
     qDebug() << jsBytes;
 }
+
+int NetBoy::switchMode(int aimMode)
+{
+
+    QJsonObject json;
+    json.insert("aimMode",aimMode);
+
+
+    QJsonDocument document;
+    document.setObject(json);
+    QByteArray dataArray = document.toJson(QJsonDocument::Compact);
+
+    // 构造请求
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    req.setUrl(QUrl(baseUrl + "control/modeSwitch"));
+
+    // 发送请求
+    res = manager->post(req,dataArray);
+
+    // 开启一个局部的事件循环，等待响应结束，退出
+    QEventLoop eventLoop;
+    QObject::connect(manager, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    // 获取响应信息
+    QByteArray jsBytes = res->readAll();
+    qDebug() << jsBytes;
+
+    //对响应信息的处理
+    QJsonDocument resJsonDocument = QJsonDocument::fromJson(jsBytes);
+    if( resJsonDocument.isNull() ){
+        qDebug()<< "===> QJsonDocument："<< jsBytes;
+    }
+    QJsonObject jsonObject = resJsonDocument.object();
+
+    qDebug() << QString::number( jsonObject.value("data").toObject().value("curMode").toInt() );
+    return jsonObject.value("data").toObject().value("curMode").toInt();
+}
