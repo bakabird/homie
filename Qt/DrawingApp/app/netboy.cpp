@@ -27,6 +27,24 @@ void NetBoy::hey()
     qDebug() << bytes;
 }
 
+//该API用以在程序运行过程中初始化数据库。
+void NetBoy::refreshDB()
+{
+    // 构造请求
+    req.setUrl(QUrl(baseUrl + "control/flash"));
+
+    // 发送请求
+    res = manager->get(req);
+
+    // 开启一个局部的事件循环，等待响应结束，退出
+    QEventLoop eventLoop;
+    QObject::connect(manager, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    // 获取响应信息
+    QByteArray bytes = res->readAll();
+    qDebug() << bytes;
+}
 int NetBoy::newRoom(int x, int y)
 {
     // 准备数据
