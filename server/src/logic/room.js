@@ -11,7 +11,10 @@ module.exports = class extends think.Logic {
         int: true
       },
       name: {
-        string: true
+        string: true,
+        length: {
+          max: 14
+        }
       }
     }
   }
@@ -27,7 +30,10 @@ module.exports = class extends think.Logic {
         int: true
       },
       name: {
-        string: true
+        string: true,
+        length: {
+          max: 14
+        }
       }
     }
   }
