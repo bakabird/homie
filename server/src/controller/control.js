@@ -18,6 +18,7 @@ module.exports = class extends Base {
     const aimMode = this.post('aimMode')
     CURMODE = aimMode;
     this.success(CURMODE)
+    this.WSBC('modeSwitch',CURMODE)
   }
   async allRoomAction(){
     return this.success(await this.model('room').all())

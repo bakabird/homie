@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   openAction() {
-    this.emit('opend', 'This client opened successfully!')
+    this.emit('opend', CURMODE)
     WSLIST[this.websocket.id] = {
       io: this.websocket
     }

@@ -1,18 +1,18 @@
 <template>
-  <div class="home">
+  <div class="home mode0">
       <h2 class='RoomNum'>房间数量:{{ roomNum }}</h2>
       <div class='RoomTitle' v-for='room in rooms' :key='room.name'>
         <h3>[{{room.id}}]{{room.name}} ({{room.x}},{{room.y}})</h3>
         <div class='RoomInfo'>
           <template v-if='elesOnRoom[room.id]'>
-            <div   v-for="ele in elesOnRoom[room.id]" :key="`ele_${ele.eid}`">
-               [{{ele.eid}}] {{ele.eleType == 'light' ? '灯' : '其他'}} 
-               <template v-if="ele.eleType == 'light' && ele.lightUp == 1">
-                <div class="light_on"></div>
-               </template>
-               <template v-else-if="ele.eleType == 'light' && ele.lightUp == 0">
-                <div class="light_off"></div>
-               </template>
+            <div class='RoomItem'  v-for="ele in elesOnRoom[room.id]" :key="`ele_${ele.eid}`">
+              <p>[{{ele.eid}}] {{ele.eleType == 'light' ? '灯' : '其他'}}</p>
+              <div v-if="mode == 1">
+                <div :class="{
+                  light_on: ele.eleType == 'light' && ele.lightUp == 1,
+                  light_off: ele.eleType == 'light' && ele.lightUp == 0
+                }"></div>
+              </div>
             </div>
           </template>
         </div>
@@ -29,7 +29,8 @@ export default {
   data() {
     return {
       rooms: [],
-      eles: {}
+      eles: {},
+      mode: 0
     };
   },
   computed: {
@@ -53,7 +54,7 @@ export default {
     async fetchRooms(){
       try {
         const response = await axios.get(this.$serverHost() + "control/allRoom");
-        console.log(response);
+        // console.log(response);
         if (response.data.errno != 0) throw new Error(response.data.errmsg);
         this.rooms = response.data.data;
       } catch (error) {
@@ -64,12 +65,12 @@ export default {
       try {
         // eles
         const response_eles = await axios.get(this.$serverHost() + "control/allEleEqp");
-        console.log(response_eles);
+        // console.log(response_eles);
         if (response_eles.data.errno != 0) throw new Error(response_eles.data.errmsg);
         const eles = response_eles.data.data;
         // eleRooms
         const response_lights = await axios.get(this.$serverHost() + "light/all");
-        console.log(response_lights);
+        // console.log(response_lights);
         if (response_lights.data.errno != 0) throw new Error(response_lights.data.errmsg);
         const lights = response_lights.data.data;
 
@@ -99,18 +100,35 @@ export default {
       // If you set `prefix` to `/counter/`, the event name will be `/counter/changed`
       //
       opend(msg) {
-        console.log(msg);
+        console.log(msg)
+        this.mode = 0 + msg;
       },
       roomChange(){
         this.fetchRooms()
+      },
+      modeSwitch(msg){
+        console.log(msg)
+        this.mode = 0 + msg;
       }
     }
   },
   mounted() {
     this.fetchRooms()
     this.fetchEleEqps()
+  },
+  watch:{
+    mode(nVal){
+      if(nVal === 0){
+        // 设计阶段
+        document.querySelector('html').style.backgroundColor = '#fff'
+        document.querySelector('#app').style.color = '#2c3e50'
+      }else{
+        // 模拟阶段
+        document.querySelector('html').style.backgroundColor = '#232426'
+        document.querySelector('#app').style.color = '#a9d4ff'
+      }
+    }
   }
-  
 };
 </script>
 <style scoped>
@@ -127,16 +145,21 @@ export default {
 .RoomInfo{
   margin-left: 2em;
 }
-.light_off{
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background: green;
+.RoomItem{
+  display: flex;
 }
 .light_on{
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
+      width: 40px;
+    height: 20px;
+    margin-top: 16px;
+    margin-left: 11px;
   background: greenyellow;
+}
+.light_off{
+    width: 40px;
+    height: 20px;
+    margin-top: 16px;
+    background: gray;
+    margin-left: 11px;
 }
 </style>

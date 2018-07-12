@@ -2,12 +2,10 @@ module.exports = class extends think.Controller {
   __before() {
 
   }
-  WSBC(event){
+  WSBC(event,msg = ""){
     for(let i in WSLIST){
-      setTimeout(()=>{
-        WSLIST[i].io.emit(event)
-        console.log(`[notice ${i}]:`,event)
-      },300)
+      WSLIST[i].io.emit(event,msg)
+      console.log(`[notice ${i}]:`,event)
     }
   }
 };
