@@ -29,4 +29,7 @@ module.exports = class extends think.Model {
       lightUp: false
     })
   }
+  all(){
+    return this.select();
+  }
 };
