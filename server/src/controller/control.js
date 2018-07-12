@@ -27,6 +27,13 @@ module.exports = class extends Base {
     await this.model('light').delete();
     await this.model('eleEquipment').delete();
     await this.model('room').delete()
+    await this.model('room').add({
+      id: 0,
+      name: '室外',
+      x: 0,
+      y: 0,
+      entry: false
+    })
     this.WSBC('roomChange')
   }
   async allEleEqpAction(){
