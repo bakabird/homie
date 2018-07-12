@@ -2,6 +2,7 @@
 #include "VisualEntity.hpp"
 #include "Group.hpp"
 #include "ActiveSelection.hpp"
+#include "componenttype.h"
 
 #include <exception>
 #include <stdexcept>
@@ -13,6 +14,8 @@ VisualEntity::VisualEntity() :
     m_selection = &ActiveSelection::getInstance();
 
     m_index = -1;
+
+    netboy =new NetBoy();
 }
 
 VisualEntity::~VisualEntity()
@@ -74,6 +77,12 @@ QString VisualEntity::getName() const{ //获取实体名字
 void VisualEntity::setName(const QString &name){//设置实体名字
 
     m_name = name;
+    if(getCompoentType()==ComponentType::Room){
+        //char *ch;
+        QByteArray ba = m_name.toLocal8Bit();
+        const char *ch = ba.data();
+        netboy->changeRoomName(getCompoentId(),ch);
+    }
 }
 
 // authur: rdd - start -
