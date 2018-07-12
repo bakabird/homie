@@ -111,7 +111,7 @@ void NetBoy::updateRoomPos(int roomId,int x, int y)
     qDebug() << jsBytes;
 }
 
-void NetBoy::changeRoomName(int roomId,const char *roomName)
+void NetBoy::changeRoomName(int roomId, QString roomName)
 {
 
     QJsonObject json;
