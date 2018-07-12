@@ -56,7 +56,6 @@ module.exports = class extends Base {
         lightUp: a.lightUp
       })
     })
-    
     return this.success(rlt)
   }
 };

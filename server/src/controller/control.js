@@ -29,4 +29,28 @@ module.exports = class extends Base {
     await this.model('room').delete()
     this.WSBC('roomChange')
   }
+  async allEleEqpAction(){
+    const rlt = []
+    const allEles = await this.model('eleEquipment').select();
+    const allEle_Room = await this.model('roomsEleEquipment').select();
+    // console.log(allEles)
+    // console.log(allEle_Room)
+    
+    allEles.map(a => {
+      rlt.push({
+        eid: a.id,
+        eleType: a.type,
+        name: a.name
+      })
+    })
+    allEle_Room.map(a => {
+      rlt.map(i => {
+        if(a.eid === i.eid){
+          i.setOn = a.rid
+        }
+      })
+    })
+
+    return this.success(rlt)
+  }
 };

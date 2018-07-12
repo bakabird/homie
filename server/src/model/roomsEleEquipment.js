@@ -12,4 +12,7 @@ module.exports = class extends think.Model {
   remove(eid){
     return this.where({ eid }).delete();
   }
+  all(){
+    return this.select();
+  }
 };
