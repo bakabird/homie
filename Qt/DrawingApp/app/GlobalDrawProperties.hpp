@@ -17,12 +17,15 @@ class GlobalDrawProperties : public QObject
 
 public:
     static GlobalDrawProperties& getInstance();
-    void setup(PropertyColorButton *fillColorProp, PropertyColorButton *lineColorProp, PropertySpinBox *thicknessProp, PropertyNameLineEdit *nameLineProp);
+    void setup(PropertyColorButton *fillColorProp,
+               PropertyColorButton *lineColorProp,
+               //PropertySpinBox *thicknessProp,
+               PropertyNameLineEdit *nameLineProp);
     void setVEProperties(VisualEntity *ve);
     QColor getFillColor();
     QColor getLineColor();
     bool isSetup() { return m_isSetup; }
-    int getThickness();
+    //int getThickness();
     QString getNameLine();
     void update(size_t selSize);
     void unlinkProperties();
@@ -39,7 +42,7 @@ private slots:
 private:
     PropertyColorButton *m_fillColorProp;
     PropertyColorButton *m_lineColorProp;
-    PropertySpinBox *m_thicknessProp;
+    //PropertySpinBox *m_thicknessProp;
     PropertyNameLineEdit *m_nameLineProp;
 
     bool m_isSetup;

@@ -84,17 +84,17 @@ MainWindow::MainWindow(QWidget *parent) :
             new PropertyColorButton(this, getCanvas(), QColor(200, 200, 200));
     PropertyColorButton *lineColorBtn =
             new PropertyColorButton(this, getCanvas(), QColor(0, 0, 0));
-    PropertySpinBox *thicknessSpinBox =
-            new PropertySpinBox(this, getCanvas(), 2);
+    //PropertySpinBox *thicknessSpinBox =
+    //        new PropertySpinBox(this, getCanvas(), 2);
     PropertyNameLineEdit *nameLineEdit =
             new PropertyNameLineEdit(this, getCanvas(), "hello");
     QPushButton *startButton = new QPushButton(tr("开始模拟"));
 
-    m_gp->setup(fillColorBtn, lineColorBtn, thicknessSpinBox, nameLineEdit);
+    m_gp->setup(fillColorBtn, lineColorBtn, nameLineEdit);
 
     ui->VEProp->addRow("Fill Color", fillColorBtn);
     ui->VEProp->addRow("Line Color", lineColorBtn);
-    ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
+    //ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
     ui->VEProp->addRow("Name",nameLineEdit);
     ui->VEProp->addWidget(startButton);
 
@@ -104,7 +104,8 @@ MainWindow::MainWindow(QWidget *parent) :
     simulation = new Simulation(this,
                                 m_canvas,
                                 startButton,
-                                netboy);
+                                netboy,
+                                ui->toolBar);
     connect(startButton, &QPushButton::pressed, simulation, &Simulation::startSimulateMode);
 
 

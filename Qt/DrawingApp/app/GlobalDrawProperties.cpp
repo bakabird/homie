@@ -17,7 +17,7 @@ GlobalDrawProperties &GlobalDrawProperties::getInstance()
 
 void GlobalDrawProperties::setup(PropertyColorButton *fillColorProp,
                                  PropertyColorButton *lineColorProp,
-                                 PropertySpinBox *thicknessProp,
+                                 //PropertySpinBox *thicknessProp,
                                   PropertyNameLineEdit *nameLineProp
                                  )
 {
@@ -25,7 +25,7 @@ void GlobalDrawProperties::setup(PropertyColorButton *fillColorProp,
 
     m_fillColorProp = fillColorProp;
     m_lineColorProp = lineColorProp;
-    m_thicknessProp = thicknessProp;
+    //m_thicknessProp = thicknessProp;
     m_nameLineProp = nameLineProp;
 
     connect(m_fillColorProp, &PropertyColorButton::pressed,
@@ -51,7 +51,7 @@ void GlobalDrawProperties::setVEProperties(VisualEntity *ve)
 
     if (l) {
         l->setLineColor(getLineColor());
-        l->setLineThickness(getThickness());
+        //l->setLineThickness(getThickness());
     }
 
     IFillable *f = dynamic_cast<IFillable*>(ve);
@@ -71,10 +71,10 @@ QColor GlobalDrawProperties::getLineColor()
     return m_lineColorProp->getColor();
 }
 
-int GlobalDrawProperties::getThickness()
-{
-    return m_thicknessProp->value();
-}
+//int GlobalDrawProperties::getThickness()
+//{
+  //  return m_thicknessProp->value();
+//}
 
 QString GlobalDrawProperties::getNameLine(){
     return m_nameLineProp->text();
@@ -92,7 +92,7 @@ void GlobalDrawProperties::update(size_t selSize)
         m_changeFillColorComm->setValue(c);
         m_changeFillColorComm->execute();
     };
-
+/*
     const static auto setThicknessFunc = [=](int t) {
         ChangeLineThicknessCommand *comm =
                 new ChangeLineThicknessCommand();
@@ -105,7 +105,7 @@ void GlobalDrawProperties::update(size_t selSize)
             delete comm;
         }
     };
-
+*/
     const static auto setNameLineFunc =[=](QString name){
         ChangeLineEditCommand *comm=new ChangeLineEditCommand();
         if (comm->canExecute()) {
@@ -131,9 +131,9 @@ void GlobalDrawProperties::update(size_t selSize)
                     [=]() { return line->getLineColor(); },
                     setLineColorFunc);
 
-        m_thicknessProp->setGetterSetter(
-                    [=]() { return line->getLineThickness(); },
-                    setThicknessFunc);
+        //m_thicknessProp->setGetterSetter(
+        //            [=]() { return line->getLineThickness(); },
+        //            setThicknessFunc);
 
         // though seemingly doing nothing, this prevents occasions
         // where on global draw properties tries to retrieve the fill
@@ -152,9 +152,9 @@ void GlobalDrawProperties::update(size_t selSize)
                     [=]() { return shape->getLineColor(); },
                     setLineColorFunc);
 
-        m_thicknessProp->setGetterSetter(
-                    [=]() { return shape->getLineThickness(); },
-                    setThicknessFunc);
+       // m_thicknessProp->setGetterSetter(
+         //           [=]() { return shape->getLineThickness(); },
+           //         setThicknessFunc);
 
         m_fillColorProp->setGetterSetter(
                     [=]() { return shape->getFillColor(); },
@@ -169,7 +169,7 @@ void GlobalDrawProperties::update(size_t selSize)
 void GlobalDrawProperties::unlinkProperties()
 {
     m_lineColorProp->unlink();
-    m_thicknessProp->unlink();
+    //m_thicknessProp->unlink();
     m_fillColorProp->unlink();
     m_nameLineProp->unlink();
 }
