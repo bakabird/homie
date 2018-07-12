@@ -2,24 +2,70 @@
     echo "Request Test...\n";
     $url="http://127.0.0.1:8360";
     $testarray =array(
-        array("/room/new","x=1&y=2","{\"errno\":0}"),
-        array("/room/new","x=-1","{\"errno\":1001}"),
-        array("/room/new","x=2&y=10000000","{\"errno\":0}"),
-        
-        array("/room/del","roomId=2","{\"errno\":0}"),
-        array("/room/del","","{\"errno\":1001}"),
-        array("/room/del","roomId=-1","{\"errno\":1002}"),
+        //1.0
+    array("/room/new","x=1&y=2&name=pei","{\"errno\":0}"),
+    array("/room/new","","{\"errno\":1001}"),
+    array("/room/new","x=1&name=pei","{\"errno\":1001}"),
+    array("/room/new","y=2&name=pei","{\"errno\":1001}"),
+    array("/room/new","x=1&y=2","{\"errno\":0}"),
+    //1.1
+    array("/room/newEntry","x=1&y=2&name=pei","{\"errno\":0}"),
+    array("/room/newEntry","","{\"errno\":1001}"),
+    array("/room/newEntry","x=1&name=pei","{\"errno\":1001}"),
+    array("/room/newEntry","y=2&name=pei","{\"errno\":1001}"),
+    array("/room/newEntry","x=1&y=2","{\"errno\":0}"),
+    //1.2
+    array("/room/del","roomId=2","{\"errno\":0}"),
+    array("/room/del","","{\"errno\":1001}"),
+    array("/room/del","room=1","{\"errno\":1001}"),
+    array("/room/del","roomId=-1","{\"errno\":1002}"),
+    //1.3
+    array("/room/info","roomId=1","{\"errno\":0}"),
+    array("/room/info","","{\"errno\":1001}"),
+    array("/room/info","room=1","{\"errno\":1001}"),
+    array("/room/info","roomId=-1","{\"errno\":1002}"),
+    //1.4        
+    array("/room/update","roomId=0&x=1&y=1&name=a","{\"errno\":0}"),
+    array("/room/update","","{\"errno\":1001}"),
+    array("/room/update","roomId=0&y=1&name=a","{\"errno\":0}"),
+    array("/room/update","roomId=0&x=1&name=a","{\"errno\":0}"),
+    array("/room/update","roomId=0&x=1&y=1","{\"errno\":0}"),
+    array("/room/update","x=1&y=1&name=a","{\"errno\":1001}"),
+    array("/room/update","roomId=-1&x=1&y=1&name=a","{\"errno\":1002}"),
 
-        array("/room/info","","{\"errno\":1001}"),
-        array("/room/info","roomId=-1","{\"errno\":1002}"),
-        array("/room/info","roomId=1","{\"errno\":0}"),
-
-        array("/room/update","roomId=1&x=1&y=1&name=\"\"","{\"errno\":0}"),
-        array("/room/update","roomId=1&x=1&name=\"hh\"","{\"errno\":0}"),
-        array("/room/update","roomId=-12&x=1&y=1&name=\"hh\"","{\"errno\":1002}"),
+    //2.0
+    array("/eleEqp/new","eleType=light","{\"errno\":0}"),
+    array("/eleEqp/new","eleType=light","{\"errno\":0}"),
+    array("/eleEqp/new","","{\"errno\":1001}"),
+    array("/eleEqp/new","name=light","{\"errno\":1001}"),
+    array("/eleEqp/new","eleType=pppp","{\"errno\":1002}"),
+    //2.1
+    array("/eleEqp/update","eid=1","{\"errno\":0}"),
+    array("/eleEqp/update","","{\"errno\":1001}"),
+    array("/eleEqp/update","id=1","{\"errno\":1001}"),
+    array("/eleEqp/update","eid=-1","{\"errno\":1002}"),
+    //2.2
+    array("/eleEqp/del","eid=2","{\"errno\":0}"),
+    array("/eleEqp/del","","{\"errno\":1001}"),
+    array("/eleEqp/del","id=1","{\"errno\":1001}"),
+    array("/eleEqp/del","eid=-1","{\"errno\":1002}"),
+    //3.0
+    array("/light/now","eid=1","{\"errno\":0}"),
+    array("/light/now","","{\"errno\":1001}"),
+    array("/light/now","id=-1","{\"errno\":1001}"),
+    array("/light/now","eid=-1","{\"errno\":1002}"),
+    //3.1
+    array("/light/update","eid=1&lightUp=true","{\"errno\":0}"),
+    array("/light/update","","{\"errno\":1001}"),
+    array("/light/update","eid=1=true","{\"errno\":1001}"),
+    array("/light/update","lightUp=true","{\"errno\":1001}"),
+    array("/light/update","eid=-1&lightUp=true","{\"errno\":1002}"),
+    array("/light/update","eid=1&lightUp=uck","{\"errno\":1002}"),
     );
     $testname=array(
-        "1.1->add room","1.2->delete room","1.3->look up room","1.3 update room",
+        "1.0->add room","1.2->add nwe entryroom","1.2->delete room","1.3->look up room","1.4->update room",
+        "2.0->create equipment","2.1->update equi-info","2.2->delete equipment",
+        "3.0->look up light","3.1->update light status",
     );
     $nameposi=0;
     for($i=0;$i<count($testarray);$i++){
@@ -32,7 +78,7 @@
         else echo "error ";
 
         printf("example%d:%s\n",$i,$testarray[$i][1]);
-
+        sleep(1);
     }
     
 ?>
