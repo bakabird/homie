@@ -20,4 +20,7 @@ module.exports = class extends think.Logic {
   flashAction(){
     this.allowMethods = "get"
   }
+  allEleEqpAction(){
+    this.allowMethods = "get"
+  }
 };
