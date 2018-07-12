@@ -116,7 +116,7 @@ void NetBoy::changeRoomName(int roomId, QString roomName)
 
     QJsonObject json;
     json.insert("roomId",roomId);
-    json.insert("roomName", roomName);
+    json.insert("name", roomName);
 
     QJsonDocument document;
     document.setObject(json);
