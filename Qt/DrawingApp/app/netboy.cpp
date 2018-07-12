@@ -116,7 +116,7 @@ void NetBoy::changeRoomName(int roomId, QString roomName)
 
     QJsonObject json;
     json.insert("roomId",roomId);
-    json.insert("roomName", roomName);
+    json.insert("name", roomName);
 
     QJsonDocument document;
     document.setObject(json);
@@ -175,4 +175,35 @@ int NetBoy::switchMode(int aimMode)
 
     qDebug() << QString::number( jsonObject.value("data").toObject().value("curMode").toInt() );
     return jsonObject.value("data").toObject().value("curMode").toInt();
+}
+
+QJsonArray NetBoy::allLightsSta()
+{
+    QJsonObject json;
+
+    // 构造请求
+    req.setUrl(QUrl(baseUrl + "light/all"));
+
+    // 发送请求
+    res = manager->get(req);
+
+    // 开启一个局部的事件循环，等待响应结束，退出
+    QEventLoop eventLoop;
+    QObject::connect(manager, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    // 获取响应信息
+    QByteArray jsBytes = res->readAll();
+    qDebug() << jsBytes;
+
+
+    //对响应信息的处理
+    QJsonDocument resJsonDocument = QJsonDocument::fromJson(jsBytes);
+    if( resJsonDocument.isNull() ){
+        qDebug()<< "===> QJsonDocument："<< jsBytes;
+    }
+    QJsonObject jsonObject = resJsonDocument.object();
+
+    qDebug() << jsonObject.value("data").toArray();
+    return jsonObject.value("data").toArray();
 }

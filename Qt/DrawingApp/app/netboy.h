@@ -15,7 +15,7 @@ public:
     void updateRoomPos(int roomId,int x, int y);
     void changeRoomName(int roomId, QString roomName);
     int switchMode(int aimMode);
-
+    QJsonArray allLightsSta();
 signals:
 
 public slots:

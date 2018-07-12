@@ -7,6 +7,7 @@ Rectangle::Rectangle()
     m_width = 150;
     m_height = 150;
     setFillColor(QColor(193, 255, 243));
+
 }
 
 Rectangle::~Rectangle()

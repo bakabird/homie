@@ -78,10 +78,7 @@ void VisualEntity::setName(const QString &name){//设置实体名字
 
     m_name = name;
     if(getCompoentType()==ComponentType::Room){
-        //char *ch;
-        QByteArray ba = m_name.toLocal8Bit();
-        const char *ch = ba.data();
-        netboy->changeRoomName(getCompoentId(),ch);
+        netboy->changeRoomName(getCompoentId(),m_name);
     }
 }
 
