@@ -5,6 +5,8 @@
 // start
 // author: rdd
 #include "netboy.h"
+#include "Simulation.h"
+
 #include <QProcess>
 // end
 
@@ -98,6 +100,7 @@ private:
     QProcess* nodeserver;
     // author: rdd -end-
 
+    Simulation *simulation;
     std::unique_ptr<SelectionTool> m_selectionTool;
     std::unique_ptr<DrawCircleTool> m_drawCircleTool;
     std::unique_ptr<DrawRectangleTool> m_drawRectangleTool;

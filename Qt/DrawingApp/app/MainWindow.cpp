@@ -97,6 +97,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VEProp->addWidget(startButton);
     // 设置右侧参数设置栏支持哪些参数 -- end --
 
+
+    simulation = new Simulation(this,m_canvas);
+    connect(startButton, &QPushButton::pressed, simulation, &Simulation::startSimulate);
     // 画布置于中央
     setCentralWidget(m_canvas);
     // 设置窗口标题

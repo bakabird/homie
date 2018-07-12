@@ -54,7 +54,8 @@ SOURCES += main.cpp \
     fileio/FileWriterFactory.cpp \
     PropertyNameLineEdit.cpp \
     componenttype.cpp \
-    netboy.cpp
+    netboy.cpp \
+    Simulation.cpp
 
 HEADERS  += \
     MainWindow.hpp \
@@ -106,7 +107,8 @@ HEADERS  += \
     Signal.hpp \
     PropertyNameLineEdit.hpp \
     componenttype.h \
-    netboy.h
+    netboy.h \
+    Simulation.h
 
 FORMS    += mainwindow.ui \
     drawdialog.ui
