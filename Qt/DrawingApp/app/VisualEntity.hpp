@@ -1,10 +1,11 @@
 #pragma once
-
+#include <QString>
 #include "ISelectable.hpp"
 #include "IDrawable.hpp"
 #include "ITransformable.hpp"
 #include "componenttype.h"
-#include <QString>
+#include "netboy.h"
+
 
 class QPainter;
 class Group;
@@ -43,6 +44,7 @@ protected:
     int m_index;
     QString m_name;
 
+    NetBoy *netboy;
     // author: rdd - start -
     // 用以区别各个组件、方便发请求
     int componentId = -1;

@@ -93,13 +93,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VEProp->addRow("Line Color", lineColorBtn);
     ui->VEProp->addRow("Line Thickness", thicknessSpinBox);
     ui->VEProp->addRow("Name",nameLineEdit);
-    //ui->VEProp->addRow("",startButton);
     ui->VEProp->addWidget(startButton);
+
     // 设置右侧参数设置栏支持哪些参数 -- end --
 
 
-    simulation = new Simulation(this,m_canvas);
-    connect(startButton, &QPushButton::pressed, simulation, &Simulation::startSimulate);
+    simulation = new Simulation(this,
+                                m_canvas,
+                                startButton,
+                                netboy);
+    connect(startButton, &QPushButton::pressed, simulation, &Simulation::startSimulateMode);
+
+
     // 画布置于中央
     setCentralWidget(m_canvas);
     // 设置窗口标题
@@ -506,7 +511,6 @@ void MainWindow::on_actionExit_triggered()
 {
     close();
 }
-
 void MainWindow::on_actionAbout_Qt_triggered()
 {
     QMessageBox::aboutQt(this);
@@ -520,7 +524,6 @@ void MainWindow::on_actionAbout_me_3_triggered()
                        "Wordpress: https://bruceoutdoors.wordpress.com/ \n"
                        "Source code: https://github.com/bruceoutdoors/DrawingApp");
 }
-
 // author:rdd
 void MainWindow::goKnockNode()
 {

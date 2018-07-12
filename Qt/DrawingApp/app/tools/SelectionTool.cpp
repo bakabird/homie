@@ -36,7 +36,7 @@ void SelectionTool::mousePress(QMouseEvent *event)
             && !(event->modifiers() & Qt::ShiftModifier)) {
                 m_selection->deselectAll();
                 clicked->setSelected(true);
-                qDebug()<<clicked->getName();
+               // qDebug()<<clicked->getName();
     }
 
     if (m_selection->getSize() > 0

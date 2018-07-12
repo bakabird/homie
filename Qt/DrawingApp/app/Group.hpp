@@ -3,9 +3,11 @@
 #include "AbstractGroup.hpp"
 #include "VisualEntity.hpp"
 
+
 class Group : public AbstractGroup, public VisualEntity
 {
 public:
+
     Group();
     ~Group();
 

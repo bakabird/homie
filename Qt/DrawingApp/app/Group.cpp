@@ -27,10 +27,12 @@ void Group::add(VisualEntity *val)
 
     //add default name for VisualEntity
     QString str = QString::number(index);
-    if(val->getCompoentType()==ComponentType::Room)
+    if(val->getCompoentType()==ComponentType::Room){
         val->setName("room"+str);
-    if(val->getCompoentType()==ComponentType::Light)
+    }
+    else if(val->getCompoentType()==ComponentType::Light){
         val->setName("Light"+str);
+    }
     //--end--
 }
 
