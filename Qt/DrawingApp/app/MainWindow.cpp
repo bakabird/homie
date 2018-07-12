@@ -73,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m_selectionTool->setNetBoy(netboy);
     m_drawRectangleTool->setNetBoy(netboy);
 
+    // 刷新数据库
+    if(!knockNode) netboy->refreshDB();
+
     // 默认使用选择工具
     m_canvas->setActiveTool(m_selectionTool.get());
 

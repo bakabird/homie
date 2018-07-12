@@ -47,4 +47,15 @@ module.exports = class extends Base {
     this.success(await this.model('light').now(eid))
     return true
   }
+  async allAction(){
+    const lightState = await this.model('light').all();
+    const rlt = []
+    lightState.map(a => {
+      rlt.push({
+        eid: a.id,
+        lightUp: a.lightUp
+      })
+    })
+    return this.success(rlt)
+  }
 };

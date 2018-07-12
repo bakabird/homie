@@ -21,4 +21,7 @@ module.exports = class extends think.Logic {
       }
     }
   }
+  allAction(){
+    this.allowMethods = "get"
+  }
 };
