@@ -29,7 +29,7 @@ void Simulation::startSimulateMode(){
         gbButton->setText("结束模拟");
         gbNetBoy->switchMode(1);// send a simulation signal to server.
 
-        timer->start(1000);
+        timer->start(500);
     }
     else if(gbButton->text()=="结束模拟"){
         isSimulate =false;
@@ -61,13 +61,14 @@ void Simulation::ctlLight(){
                         a->setFillColor(QColor(240, 124, 59));
                     else
                         a->setFillColor(QColor(85, 255, 127));
+                    gbCanvas->repaint();
                 }
             }
         }
 
     }
 
-    timer->start(1000);
+    timer->start(500);
 
 }
 

@@ -8,7 +8,7 @@ import util from './util'
 
 Vue.config.productionTip = false
 Vue.use(util)
-Vue.use( VueWebsocket,  "ws://localhost:8360" );
+Vue.use( VueWebsocket,  `ws://${location.host}` );
 
 new Vue({
   router,

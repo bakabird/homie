@@ -30,7 +30,8 @@ export default {
     return {
       rooms: [],
       eles: {},
-      mode: 0
+      mode: 0,
+      host: ""
     };
   },
   computed: {
@@ -127,6 +128,7 @@ export default {
   mounted() {
     this.fetchRooms()
     this.fetchEleEqps()
+    this.host = location.host
   },
   watch:{
     mode(nVal){

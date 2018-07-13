@@ -29,7 +29,8 @@ module.exports = [
     handle: cors,
     enable: isDev,
     options: {
-      origin: "http://localhost:8080",
+      origin: "*",
+      // origin: "http://localhost:8080",
       credentials: true
     } 
   },
