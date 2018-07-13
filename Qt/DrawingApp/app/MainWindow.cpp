@@ -35,8 +35,9 @@
 #include <QDebug>
 #include <QLabel>
 #include <QPushButton>
+#include <QDir>
+#include <QString>
 
-#define Q_OS_WIN
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -72,9 +73,6 @@ MainWindow::MainWindow(QWidget *parent) :
     netboy = new NetBoy();
     m_selectionTool->setNetBoy(netboy);
     m_drawRectangleTool->setNetBoy(netboy);
-
-    // 刷新数据库
-    if(!knockNode) netboy->refreshDB();
 
     // 默认使用选择工具
     m_canvas->setActiveTool(m_selectionTool.get());
@@ -133,19 +131,20 @@ bool MainWindow::isDirty() const
 
 bool MainWindow::promptUnsavedWork()
 {
-    if (isDirty()) {
+//    if (isDirty()) {
         auto answer =
                 QMessageBox::question(this,
-                                      "Save your current work?",
-                                      "Looks like you left a masterpiece behind. Do you want to save it?",
-                                       QMessageBox::StandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel));
+                                      "要退出？",
+                                      "你确定要退出程序么？",
+                                       QMessageBox::StandardButtons(QMessageBox::Yes | QMessageBox::No));
         if (answer == QMessageBox::Yes) {
-            on_actionSave_triggered();
-            if (isDirty()) return false;
-        } else if (answer == QMessageBox::Cancel) {
+            //on_actionSave_triggered();
+            //if (isDirty()) return false;
+            return true;
+        } else if (answer == QMessageBox::No) {
             return false;
         }
-    }
+//    }
 
     return true;
 }
@@ -289,7 +288,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }else{
         // 窗口即将被关闭 author: rdd
-        if(knockNode) kiilNode();
+        emit willClose();
     }
 }
 
@@ -527,45 +526,4 @@ void MainWindow::on_actionAbout_me_3_triggered()
                        "Created by Lee Zhen Yong AKA bruceoutdoors\n\n"
                        "Wordpress: https://bruceoutdoors.wordpress.com/ \n"
                        "Source code: https://github.com/bruceoutdoors/DrawingApp");
-}
-// author:rdd
-void MainWindow::goKnockNode()
-{
-    knockNode = true;
-    nodeserver = new QProcess(new QObject());
-    qDebug() << QObject::tr("启动node服务器");
-
-    nodeserver->setProcessChannelMode(QProcess :: MergedChannels);
-
-    // ⚠️注意：请将服务器放到对应的地方，否则将启动失败
-    #ifdef Q_OS_MAC
-    nodeserver->start("./server/node_mac ./server/development.js",QIODevice::ReadWrite);
-    #endif
-    #ifdef Q_OS_WIN
-    nodeserver->start("./server/node_win.exe ./server/development.js",QIODevice::ReadWrite);
-    #endif
-
-    // 等待服务器启动，超时时间为2秒
-    if(nodeserver->waitForStarted(2))
-    {
-        qDebug() << QObject::tr("服务器启动成功");
-        // 确认服务器存活超过5秒 -> 就假设服务器成功运行
-        if(nodeserver->waitForFinished(5000)){
-            QByteArray result = nodeserver->readAll();
-            qDebug() << QObject::tr("服务器程序被关闭");
-        }else
-            qDebug() << QObject::tr("服务器程序正常运行");
-    }
-};
-
-void MainWindow::kiilNode()
-{
-    if(nodeserver) {
-        nodeserver->close();
-        nodeserver->kill();
-        nodeserver->waitForFinished();
-    }
-
-    delete nodeserver;
-    nodeserver = NULL;
 }

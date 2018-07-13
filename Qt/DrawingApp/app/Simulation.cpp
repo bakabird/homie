@@ -23,7 +23,7 @@ void Simulation::startSimulateMode(){
     if(gbButton->text()=="开始模拟"){
  //       isSimulate = true;
         tb->hide();
-        QColor val(23,24,26);
+        QColor val(35,37,39);
         setBackgroundColor(val);
         gbButton->setText("结束模拟");
         gbNetBoy->switchMode(1);// send a simulation signal to server.

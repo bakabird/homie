@@ -43,8 +43,6 @@ public:
     void setCanvasFile(const QString &value);
 
     // author: rdd -- start --
-    // 前去启动node服务器
-    void goKnockNode();
     // 吃了它
     void kiilNode();
     // author: rdd -- end --
@@ -52,8 +50,10 @@ public:
 protected:
     void closeEvent(QCloseEvent *event) override;
 
-private slots:
-    void on_actionCircle_triggered();
+signals:
+    void willClose();
+
+private slots: void on_actionCircle_triggered();
     void on_actionRectangle_triggered();
     void on_actionLine_triggered();
     void on_actionSelectionTool_triggered();
@@ -93,12 +93,6 @@ private:
     // author: rdd -start-
     // __NetBoy相关
     NetBoy* netboy;
-
-    // __node服务器相关
-    // 是否启动了node服务器
-    bool knockNode = false;
-    QProcess* nodeserver;
-    // author: rdd -end-
 
     Simulation *simulation;
     std::unique_ptr<SelectionTool> m_selectionTool;

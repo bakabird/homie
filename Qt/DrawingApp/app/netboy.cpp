@@ -9,7 +9,7 @@ NetBoy::NetBoy(QObject *parent) : QObject(parent)
     manager = new QNetworkAccessManager(this);
 }
 
-void NetBoy::hey()
+bool NetBoy::hey()
 {
     // 构造请求
     req.setUrl(QUrl(baseUrl + "control/hey"));
@@ -23,8 +23,15 @@ void NetBoy::hey()
     eventLoop.exec();
 
     // 获取响应信息
-    QByteArray bytes = res->readAll();
-    qDebug() << bytes;
+    QByteArray jsBytes = res->readAll();
+    qDebug() << jsBytes;
+
+    QJsonDocument resJsonDocument = QJsonDocument::fromJson(jsBytes);
+    if( resJsonDocument.isNull() ){
+        return false;
+    }else{
+        return true;
+    }
 }
 
 //该API用以在程序运行过程中初始化数据库。

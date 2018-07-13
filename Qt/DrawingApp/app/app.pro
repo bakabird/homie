@@ -55,7 +55,8 @@ SOURCES += main.cpp \
     PropertyNameLineEdit.cpp \
     componenttype.cpp \
     netboy.cpp \
-    Simulation.cpp
+    Simulation.cpp \
+    nodeservermanager.cpp
 
 HEADERS  += \
     MainWindow.hpp \
@@ -108,7 +109,8 @@ HEADERS  += \
     PropertyNameLineEdit.hpp \
     componenttype.h \
     netboy.h \
-    Simulation.h
+    Simulation.h \
+    nodeservermanager.h
 
 FORMS    += mainwindow.ui \
     drawdialog.ui
