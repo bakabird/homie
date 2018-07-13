@@ -19,7 +19,7 @@ module.exports = class extends Base {
       // console.log(setOn != 0 && think.isEmpty( await this.model('room').checkRoom(setOn) ))
       if( setOn != 0 && think.isEmpty( await this.model('room').checkRoom(setOn) ) ){
         this.fail(1002,'invalid setOn')
-        return
+        return false;
       }else{
         // 建一个电器 并且 完成安置
         const eid = await this.model('eleEquipment').new(name ,eleType)
@@ -119,6 +119,7 @@ module.exports = class extends Base {
     return true
   }
   __after(){
+    console.log('enter')
     this.WSBC('elesChange')
   }
 };

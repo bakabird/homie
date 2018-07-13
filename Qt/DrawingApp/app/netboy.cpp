@@ -215,6 +215,11 @@ QJsonArray NetBoy::allLightsSta()
     return jsonObject.value("data").toArray();
 }
 
+int NetBoy::newLight(QString name)
+{
+    return this->newEqp("light",name,0);
+}
+
 int NetBoy::newEqp(QString eleType, QString eleName, int setOn)
 {
     // 准备数据

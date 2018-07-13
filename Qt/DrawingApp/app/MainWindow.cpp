@@ -305,7 +305,7 @@ void MainWindow::on_actionDrawCircle_triggered()
     m_canvas->addVisualEntity(c);
 
 
-
+    c->setComponetId(netboy->newLight(c->getName()));
     // 前提：所有房间创建时都在坐标10,10
    // c->setComponetId( netboy->newRoom(10,10) );
     //DrawDialog *d = DrawDialogFactory::CreateDrawDialog(this, c);
