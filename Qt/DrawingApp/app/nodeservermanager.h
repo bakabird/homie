@@ -21,7 +21,6 @@ private:
     NetBoy nb;
     QProcess p;
     QString program;
-    bool knockNode;
     bool goKnockNode();
     void propmtServerFail();
 };

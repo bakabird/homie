@@ -11,7 +11,7 @@
                 <div :class="{
                   light_on: ele.eleType == 'light' && ele.lightUp == 1,
                   light_off: ele.eleType == 'light' && ele.lightUp == 0
-                }"></div>
+                }" @click="toggleLight(ele.eid,ele.lightUp)"></div>
               </div>
             </div>
           </template>
@@ -88,6 +88,12 @@ export default {
         console.error(error);
       }
     },
+    async toggleLight(eid, curLightUp){
+      await axios.post(this.$serverHost() + "light/update",{
+        eid,
+        lightUp: !curLightUp
+      })
+    }
   },
   socket: {
     // Prefix for event names
@@ -109,6 +115,12 @@ export default {
       modeSwitch(msg){
         console.log(msg)
         this.mode = 0 + msg;
+      },
+      elesChange(msg){
+        this.fetchEleEqps();
+      },
+      lightChange(msg){
+        this.fetchEleEqps();
       }
     }
   },
@@ -118,6 +130,7 @@ export default {
   },
   watch:{
     mode(nVal){
+      console.log(nVal)
       if(nVal === 0){
         // 设计阶段
         document.querySelector('html').style.backgroundColor = '#fff'
