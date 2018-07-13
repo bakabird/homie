@@ -34,7 +34,6 @@ bool NodeServerManager::goKnockNode()
 {
     bool success = false;
 
-    knockNode = true;
     QEventLoop eventLoop;
 
 

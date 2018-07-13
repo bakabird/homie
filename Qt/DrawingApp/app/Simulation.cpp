@@ -36,6 +36,7 @@ void Simulation::startSimulateMode(){
         QColor val(255,255,255);
         setBackgroundColor(val);
         gbButton->setText("开始模拟");
+        gbNetBoy->switchMode(0);// send a simulation signal to server.
     }
 }
 

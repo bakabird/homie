@@ -56,6 +56,10 @@ module.exports = class extends Base {
         lightUp: a.lightUp
       })
     })
-    return this.success(rlt)
+    this.success(rlt)
+    return false;
+  }
+  __after(){
+    this.WSBC('lightChange')
   }
 };

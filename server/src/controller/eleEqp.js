@@ -118,4 +118,7 @@ module.exports = class extends Base {
     this.success();
     return true
   }
+  __after(){
+    this.WSBC('elesChange')
+  }
 };
