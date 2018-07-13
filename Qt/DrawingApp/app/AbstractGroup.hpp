@@ -30,7 +30,7 @@ public:
 
     void sortByIndex();
 
-protected:
+public:
     void reindexChildren();
     std::vector<VisualEntity*> m_children;
 };

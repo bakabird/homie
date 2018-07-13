@@ -21,14 +21,14 @@ public:
                         NetBoy *netboy=nullptr,
                         QToolBar *qtb=nullptr);
     void setBackgroundColor(QColor val);
-    void ctlLight();
 
 signals:
 
 public slots:
+    void ctlLight();
     void startSimulateMode();
 private:
-    //bool isSimulate;
+    bool isSimulate;
     Canvas *gbCanvas;
     QPushButton *gbButton;
     NetBoy *gbNetBoy;

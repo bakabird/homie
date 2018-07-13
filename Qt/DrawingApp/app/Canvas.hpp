@@ -28,7 +28,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     bool event(QEvent *event) override;
 
-private:
+public:
     Group *m_mainGroup;
     ActiveSelection *m_selection;
     Tool *m_activeTool;
