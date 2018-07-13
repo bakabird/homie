@@ -214,3 +214,109 @@ QJsonArray NetBoy::allLightsSta()
     qDebug() << jsonObject.value("data").toArray();
     return jsonObject.value("data").toArray();
 }
+
+int NetBoy::newEqp(QString eleType, QString eleName, int setOn)
+{
+    // 准备数据
+    QJsonObject json;
+    json.insert("eleType",eleType);
+    json.insert("name",eleName);
+    json.insert("setOn",setOn);
+
+    QJsonDocument document;
+    document.setObject(json);
+    QByteArray dataArray = document.toJson(QJsonDocument::Compact);
+
+    // 构造请求
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    req.setUrl(QUrl(baseUrl + "eleEqp/new"));
+
+    // 发送请求
+    res = manager->post(req,dataArray);
+
+    // 开启一个局部的事件循环，等待响应结束，退出
+    QEventLoop eventLoop;
+    QObject::connect(manager, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    // 获取响应信息
+    QByteArray jsBytes = res->readAll();
+    qDebug() << jsBytes;
+
+    QJsonDocument resJsonDocument = QJsonDocument::fromJson(jsBytes);
+    if( resJsonDocument.isNull() ){
+        qDebug()<< "===> QJsonDocument："<< jsBytes;
+    }
+    QJsonObject jsonObject = resJsonDocument.object();
+
+    qDebug() << QString::number( jsonObject.value("data").toObject().value("eid").toInt() );
+    return jsonObject.value("data").toObject().value("eid").toInt();
+}
+
+int NetBoy::updateEqpSet(int eid,int setOn)
+{
+    // 准备数据
+    QJsonObject json;
+    json.insert("eid",eid);
+    json.insert("setOn",setOn);
+
+    QJsonDocument document;
+    document.setObject(json);
+    QByteArray dataArray = document.toJson(QJsonDocument::Compact);
+
+    // 构造请求
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    req.setUrl(QUrl(baseUrl + "eleEqp/update"));
+
+    // 发送请求
+    res = manager->post(req,dataArray);
+
+    // 开启一个局部的事件循环，等待响应结束，退出
+    QEventLoop eventLoop;
+    QObject::connect(manager, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    // 获取响应信息
+    QByteArray jsBytes = res->readAll();
+    qDebug() << jsBytes;
+
+
+    QJsonDocument resJsonDocument = QJsonDocument::fromJson(jsBytes);
+    if( resJsonDocument.isNull() ){
+        qDebug()<< "===> QJsonDocument："<< jsBytes;
+    }
+    QJsonObject jsonObject = resJsonDocument.object();
+
+    qDebug() << QString::number( jsonObject.value("data").toObject().value("setOn").toInt() );
+    return jsonObject.value("data").toObject().value("setOn").toInt();
+}
+
+void NetBoy::changeEqpName(int eid, QString eqpName)
+{
+
+    QJsonObject json;
+    json.insert("eid",eid);
+    json.insert("name", eqpName);
+
+    QJsonDocument document;
+    document.setObject(json);
+    QByteArray dataArray = document.toJson(QJsonDocument::Compact);
+
+    // 构造请求
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    req.setUrl(QUrl(baseUrl + "eleEqp/update"));
+
+    // 发送请求
+    res = manager->post(req,dataArray);
+
+    // 开启一个局部的事件循环，等待响应结束，退出
+    QEventLoop eventLoop;
+    QObject::connect(manager, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    // 获取响应信息
+    QByteArray jsBytes = res->readAll();
+    qDebug() << jsBytes;
+
+
+}

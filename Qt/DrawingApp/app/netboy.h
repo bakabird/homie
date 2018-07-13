@@ -16,6 +16,10 @@ public:
     void changeRoomName(int roomId, QString roomName);
     int switchMode(int aimMode);
     QJsonArray allLightsSta();
+    int newEqp(QString eleType, QString eleName, int setOn);
+    int updateEqpSet(int eid,int setOn);
+    void changeEqpName(int eid, QString eqpName);
+
 signals:
 
 public slots:
